@@ -5,9 +5,11 @@
  */
 package com.mycompany.ppe3;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,9 +20,10 @@ import javax.swing.JOptionPane;
  */
 public class Formulaire extends javax.swing.JPanel {
 
+   
     //Connection connexion;
     bddSQL bdd = new bddSQL();
-
+     
     /**
      * Creates new form Formulaire
      */
@@ -38,16 +41,14 @@ public class Formulaire extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldPasswordLogging = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldUsernameLogging = new javax.swing.JTextField();
         jButtonLogging = new javax.swing.JButton();
         jLabelEtatConnexion = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
 
         jLabel1.setText("Username :");
-
-        jTextFieldPasswordLogging.setText("root");
 
         jLabel2.setText("Password :");
 
@@ -65,6 +66,8 @@ public class Formulaire extends javax.swing.JPanel {
         jLabelTitle.setFont(new java.awt.Font("Caladea", 1, 18)); // NOI18N
         jLabelTitle.setText("Authentification");
 
+        jPasswordField.setText("root");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,12 +80,11 @@ public class Formulaire extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldPasswordLogging)
-                                .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelEtatConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -97,11 +99,11 @@ public class Formulaire extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPasswordLogging, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(40, 40, 40)
+                    .addComponent(jLabel2)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addComponent(jButtonLogging)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addComponent(jLabelEtatConnexion)
@@ -109,11 +111,18 @@ public class Formulaire extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
-
+    /**
+     * Cette méthode permet l'authentification d'un utilisateur 
+     * Elle appelle une méthode de la classe BDDsql qui permet la connexion a la base de donnée
+     */
+    private void connexion(){
+        
         String loginUsername = jTextFieldUsernameLogging.getText();
-        String loginPassword = jTextFieldPasswordLogging.getText();
-
+        String loginPassword = jPasswordField.getText();
+        
+ 
+        
+        
         try {
             bdd.connexionBdd();
 
@@ -121,28 +130,43 @@ public class Formulaire extends javax.swing.JPanel {
             if (bdd.connexion != null) {
 
                 try ( //Création Statement pour requete / interaction base
-                        Statement st = (Statement) bdd.connexion.createStatement()) {
-                    //Traitement
-
-                    String sql = "SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'";
+                    Statement st = (Statement) bdd.connexion.createStatement()) {
+                    
+                    String sql = ("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
                     ResultSet result = st.executeQuery(sql);
+                    
 
+                    System.out.println(sql);
                     if (result.next()) {
-                        JFrameMain jfrm1 = new JFrameMain();
+                        
                         JFrameAgent jfrm2 = new JFrameAgent();
-
+                        
                         jfrm2.setVisible(true);
+                        
+                    String sqlPerm = ("SELECT * FROM profil WHERE permission = 1");
+                    ResultSet resultPerm = st.executeQuery(sqlPerm);
+                        if(resultPerm.next()){
+                        
+                            jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
+                        } else {
+                            jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
+                        }
+                       
+                        
+                        
                         jTextFieldUsernameLogging.setEnabled(false);
-                        jTextFieldPasswordLogging.setEnabled(false);
+                        jPasswordField.setEnabled(false);
                         jButtonLogging.setEnabled(false);
                         jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
-
+                        System.out.println("Authentification enabled, user was founded");
                     } else {
                         //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
                         Object[] options = {"OK"};
+                        System.out.println("Authentification Failed not user found");
                         JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
                                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                                 null, options, options[0]);
+                        
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,6 +177,13 @@ public class Formulaire extends javax.swing.JPanel {
         } catch (SQLException e) {
 
         }
+    }
+    
+    
+    
+    private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
+
+        this.connexion();
     }//GEN-LAST:event_jButtonLoggingActionPerformed
 
 
@@ -162,7 +193,7 @@ public class Formulaire extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelEtatConnexion;
     private javax.swing.JLabel jLabelTitle;
-    private javax.swing.JTextField jTextFieldPasswordLogging;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldUsernameLogging;
     // End of variables declaration//GEN-END:variables
 

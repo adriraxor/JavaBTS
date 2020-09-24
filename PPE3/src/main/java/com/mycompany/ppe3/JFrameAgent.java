@@ -5,15 +5,17 @@
  */
 package com.mycompany.ppe3;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -24,6 +26,8 @@ public class JFrameAgent extends javax.swing.JFrame {
     /**
      * Creates new form JFrameAgent
      */
+    JTable table;
+
     public JFrameAgent() {
         initComponents();
     }
@@ -49,8 +53,7 @@ public class JFrameAgent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldNomClient = new javax.swing.JTextField();
         jLabelEtatInsertionClient = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jButtonAfficherClient = new javax.swing.JButton();
         jPanelCategorieProduit = new javax.swing.JPanel();
         jPanelVenteProduit = new javax.swing.JPanel();
 
@@ -81,18 +84,12 @@ public class JFrameAgent extends javax.swing.JFrame {
 
         jTextFieldNomClient.setText("Test");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "idClient", "nomClient", "prenomClient", "Email", "numTel"
+        jButtonAfficherClient.setText("Afficher");
+        jButtonAfficherClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAfficherClientActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
 
         javax.swing.GroupLayout jPanelClientConfLayout = new javax.swing.GroupLayout(jPanelClientConf);
         jPanelClientConf.setLayout(jPanelClientConfLayout);
@@ -124,10 +121,11 @@ public class JFrameAgent extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addComponent(jLabelEtatInsertionClient, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jButtonCreerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonAfficherClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCreerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(777, Short.MAX_VALUE))
         );
         jPanelClientConfLayout.setVerticalGroup(
             jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,14 +146,13 @@ public class JFrameAgent extends javax.swing.JFrame {
                 .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(jButtonCreerClient)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAfficherClient)
+                .addGap(180, 180, 180)
                 .addComponent(jLabelEtatInsertionClient, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jTabbedPaneOngletAgent.addTab("Client Configuration", jPanelClientConf);
@@ -200,6 +197,12 @@ public class JFrameAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    /**
+     * Cette méthode nous permet de créer des clients
+     * Techniquement parlant nous allons insérer nos clients dans notre table client via un INSERT INTO client VALUES XXXXXXXXXXXXXXX
+     */
     public void requeteInsertionClient() {
 
         bddSQL bdd = new bddSQL();
@@ -218,29 +221,70 @@ public class JFrameAgent extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Méthode qui va nous permettre d'afficher la liste de tous les clients appartenant à notre table client de notre base de donnée
+     */
     public void afficherClient() {
+
+        //Récupération connexion BDD, instanciation classe bddSQL
         bddSQL bdd = new bddSQL();
         bdd.connexionBdd();
         
-        Statement requete;
+           
+        //Configuration de la seconde JFrame qui va afficher notre liste de client
+        JFrame frame2 = new JFrame("Liste des clients"); //Ce qui as dans la chaîne de caractère va définir le titre de la fenêtre
+        frame2.setLayout(new FlowLayout());
+        frame2.setSize(800, 800); //On définis la taille de la Frame
+        
+ 
+        //Configuration de notre JTable et du DefaultModel
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        table = new JTable(defaultTableModel);
+        table.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        table.setFillsViewportHeight(true);
+        frame2.add(new JScrollPane(table));
+        defaultTableModel.addColumn("idClient");
+        defaultTableModel.addColumn("nomClient");
+        defaultTableModel.addColumn("prenomClient");
+        defaultTableModel.addColumn("Email");
+        defaultTableModel.addColumn("num_telephone");
+             
         try {
-            requete = bdd.connexion.createStatement();
-            
-            ResultSet rs  = requete.executeQuery("SELECT * FROM client");
-            
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(JFrameAgent.class.getName()).log(Level.SEVERE, null, ex);
+ 
+            Statement st = bdd.connexion.createStatement();//création de l'objet Statement
+            String sql = "SELECT * FROM client";//Requete SQL qui va sélectionner tous nos champs
+            ResultSet resultSet = st.executeQuery(sql);//Execution de notre requête SQL
+ 
+ 
+            while (resultSet.next()) {
+             
+             //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String id = resultSet.getString(1); //on récupère nos tuples du champs id
+                String nom = resultSet.getString(2); //on récupère nos tuples du champs nom
+                String prenom = resultSet.getString(3); //on récupère nos tuples du champs prenom
+                String email = resultSet.getString(4); //on récupère nos tuples du champs Email
+                String numTel = resultSet.getString(5); //on récupère nos tuples du champs num_telephone
+
+                defaultTableModel.addRow(new Object[]{id, nom, prenom, email, numTel});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+                frame2.setVisible(true);//On définis la visibilité de notre fenêtre sur TRUE (Ce qui permet de l'afficher)
+                frame2.validate();
+                    
+            }
+ 
+        } catch (SQLException throwables) {
         }
-            
-        }
+    }
 
 
     private void jButtonCreerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreerClientActionPerformed
         // TODO add your handling code here:    
         this.requeteInsertionClient();
-        
     }//GEN-LAST:event_jButtonCreerClientActionPerformed
+
+    private void jButtonAfficherClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAfficherClientActionPerformed
+        // TODO add your handling code here:
+        this.afficherClient();
+    }//GEN-LAST:event_jButtonAfficherClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,33 +303,17 @@ public class JFrameAgent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameAgent
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameAgent.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameAgent
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameAgent.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameAgent
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameAgent.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameAgent
-
-.class  
-
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameAgent.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -298,6 +326,7 @@ public class JFrameAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAfficherClient;
     private javax.swing.JButton jButtonCreerClient;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,9 +336,7 @@ public class JFrameAgent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCategorieProduit;
     private javax.swing.JPanel jPanelClientConf;
     private javax.swing.JPanel jPanelVenteProduit;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneOngletAgent;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldEmailClient;
     private javax.swing.JTextField jTextFieldNomClient;
     private javax.swing.JTextField jTextFieldPrenomClient;
