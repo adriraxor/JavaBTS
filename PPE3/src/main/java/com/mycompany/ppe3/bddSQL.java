@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  */
 public class bddSQL {
     
+    
     Connection connexion;
     
     public void connexionBdd(){
-        
         
         Formulaire form = new Formulaire();
         //Information(s) BDD
@@ -33,21 +33,14 @@ public class bddSQL {
         //Connexion BDD
         try {
             this.connexion = (Connection) DriverManager.getConnection(url, logUser, logPass);
+            System.out.println("Connexion Enabled");
             
         } catch (SQLException ex) {
             Logger.getLogger(bddSQL.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Connexion Failed");
             
         }
        
         
-    }
-    
-
-    
-
-    
-    
-    
-    
-    
+    } 
 }

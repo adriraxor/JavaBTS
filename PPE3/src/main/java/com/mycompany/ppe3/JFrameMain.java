@@ -30,7 +30,7 @@ public class JFrameMain extends javax.swing.JFrame {
         formulaire2 = new com.mycompany.ppe3.Formulaire();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(formulaire2);
+        getContentPane().add(formulaire2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -5,12 +5,12 @@
  */
 package com.mycompany.ppe3;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,10 +19,8 @@ import java.util.logging.Logger;
 public class Formulaire extends javax.swing.JPanel {
 
     //Connection connexion;
-    
     bddSQL bdd = new bddSQL();
-    
-    
+
     /**
      * Creates new form Formulaire
      */
@@ -30,8 +28,6 @@ public class Formulaire extends javax.swing.JPanel {
         initComponents();
     }
 
-        
-        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,36 +108,44 @@ public class Formulaire extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
-  
+
         String loginUsername = jTextFieldUsernameLogging.getText();
         String loginPassword = jTextFieldPasswordLogging.getText();
-        
-        try { 
+
+        try {
             bdd.connexionBdd();
-            
+
             //Traitement
-            if(bdd.connexion != null) {
-                
-            try ( //Création Statement pour requete / interaction base
-                    Statement st = (Statement) bdd.connexion.createStatement()) {
-                //Traitement
-                
-                String sql = "SELECT * FROM profil WHERE username = '"+ loginUsername + "' AND password = '"+ loginPassword+"'";
-                ResultSet result = st.executeQuery(sql);
-                
-                if(result.next()){
-                    jLabelEtatConnexion.setText("Connexion Réussi : " + loginUsername);
-                }else {
-                    jLabelEtatConnexion.setText("Connexion échouée");
-                } 
-                }   catch (SQLException ex) {
+            if (bdd.connexion != null) {
+
+                try ( //Création Statement pour requete / interaction base
+                        Statement st = (Statement) bdd.connexion.createStatement()) {
+                    //Traitement
+
+                    String sql = "SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'";
+                    ResultSet result = st.executeQuery(sql);
+
+                    if (result.next()) {
+                        JFrameMain jfrm1 = new JFrameMain();
+                        JFrameAgent jfrm2 = new JFrameAgent();
+
+                        jfrm2.setVisible(true);
+                        jTextFieldUsernameLogging.setEnabled(false);
+                        jTextFieldPasswordLogging.setEnabled(false);
+                        jButtonLogging.setEnabled(false);
+                        jLabelEtatConnexion.setText("Connecté avec : " +jTextFieldUsernameLogging.getText());
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
+                    }
+                } catch (SQLException ex) {
                     Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            bdd.connexion.close();
-           
-        }
-        } catch (SQLException e){
-            
+                bdd.connexion.close();
+
+            }
+        } catch (SQLException e) {
+
         }
     }//GEN-LAST:event_jButtonLoggingActionPerformed
 
@@ -155,4 +159,5 @@ public class Formulaire extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldPasswordLogging;
     private javax.swing.JTextField jTextFieldUsernameLogging;
     // End of variables declaration//GEN-END:variables
+
 }
