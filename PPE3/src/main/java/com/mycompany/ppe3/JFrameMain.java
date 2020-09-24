@@ -30,6 +30,7 @@ public class JFrameMain extends javax.swing.JFrame {
         formulaire2 = new com.mycompany.ppe3.Formulaire();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fenêtre de connexion");
         getContentPane().add(formulaire2, java.awt.BorderLayout.CENTER);
 
         pack();

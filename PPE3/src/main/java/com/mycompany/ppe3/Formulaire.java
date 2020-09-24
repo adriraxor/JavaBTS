@@ -70,10 +70,9 @@ public class Formulaire extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelEtatConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -83,7 +82,10 @@ public class Formulaire extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextFieldPasswordLogging)
                                 .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelEtatConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,9 +103,9 @@ public class Formulaire extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(40, 40, 40)
                 .addComponent(jButtonLogging)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addComponent(jLabelEtatConnexion)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,10 +135,14 @@ public class Formulaire extends javax.swing.JPanel {
                         jTextFieldUsernameLogging.setEnabled(false);
                         jTextFieldPasswordLogging.setEnabled(false);
                         jButtonLogging.setEnabled(false);
-                        jLabelEtatConnexion.setText("Connecté avec : " +jTextFieldUsernameLogging.getText());
+                        jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
 
                     } else {
-                        JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
+                        //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
+                        Object[] options = {"OK"};
+                        JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                                null, options, options[0]);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
