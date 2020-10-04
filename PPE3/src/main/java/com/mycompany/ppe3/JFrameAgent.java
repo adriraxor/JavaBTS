@@ -10,8 +10,10 @@ import java.awt.FlowLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -55,11 +57,18 @@ public class JFrameAgent extends javax.swing.JFrame {
         jLabelEtatInsertionClient = new javax.swing.JLabel();
         jButtonAfficherClient = new javax.swing.JButton();
         jPanelCategorieProduit = new javax.swing.JPanel();
+        jComboBoxCategories = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jPanelVenteProduit = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPaneOngletAgent.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+        jTabbedPaneOngletAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPaneOngletAgentMouseClicked(evt);
+            }
+        });
 
         jButtonCreerClient.setText("Création du Client");
         jButtonCreerClient.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +93,7 @@ public class JFrameAgent extends javax.swing.JFrame {
 
         jTextFieldNomClient.setText("Test");
 
-        jButtonAfficherClient.setText("Afficher");
+        jButtonAfficherClient.setText("Afficher Tous Les Clients");
         jButtonAfficherClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAfficherClientActionPerformed(evt);
@@ -107,25 +116,24 @@ public class JFrameAgent extends javax.swing.JFrame {
                             .addGroup(jPanelClientConfLayout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelClientConfLayout.createSequentialGroup()
+                                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanelClientConfLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jLabelEtatInsertionClient, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelClientConfLayout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAfficherClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonCreerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(777, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelClientConfLayout.setVerticalGroup(
             jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,15 +165,33 @@ public class JFrameAgent extends javax.swing.JFrame {
 
         jTabbedPaneOngletAgent.addTab("Client Configuration", jPanelClientConf);
 
+        jComboBoxCategories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriesActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Filtre Produits");
+
         javax.swing.GroupLayout jPanelCategorieProduitLayout = new javax.swing.GroupLayout(jPanelCategorieProduit);
         jPanelCategorieProduit.setLayout(jPanelCategorieProduitLayout);
         jPanelCategorieProduitLayout.setHorizontalGroup(
             jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1192, Short.MAX_VALUE)
+            .addGroup(jPanelCategorieProduitLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(948, Short.MAX_VALUE))
         );
         jPanelCategorieProduitLayout.setVerticalGroup(
             jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(jPanelCategorieProduitLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel5)
+                .addGap(45, 45, 45)
+                .addComponent(jComboBoxCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(490, Short.MAX_VALUE))
         );
 
         jTabbedPaneOngletAgent.addTab("Catégorie Produits", jPanelCategorieProduit);
@@ -197,15 +223,14 @@ public class JFrameAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     /**
-     * Cette méthode nous permet de créer des clients
-     * Techniquement parlant nous allons insérer nos clients dans notre table client via un INSERT INTO client VALUES XXXXXXXXXXXXXXX
+     * Cette méthode nous permet de créer des clients Techniquement parlant nous
+     * allons insérer nos clients dans notre table client via un INSERT INTO
+     * client VALUES XXXXXXXXXXXXXXX
      */
     public void requeteInsertionClient() {
 
-        bddSQL bdd = new bddSQL();
+        BddSQL bdd = new BddSQL();
         bdd.connexionBdd();
 
         try {
@@ -215,50 +240,52 @@ public class JFrameAgent extends javax.swing.JFrame {
             jLabelEtatInsertionClient.setText("Insertion Réussi du client : " + jTextFieldPrenomClient.getText() + "." + jTextFieldNomClient.getText());
 
         } catch (SQLException ex) {
-            Logger.getLogger(bddSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BddSQL.class.getName()).log(Level.SEVERE, null, ex);
             jLabelEtatInsertionClient.setText("Insertion échoué du client !");
         }
 
     }
 
     /**
-     * Méthode qui va nous permettre d'afficher la liste de tous les clients appartenant à notre table client de notre base de donnée
+     * Méthode qui va nous permettre d'afficher la liste de tous les clients
+     * appartenant à notre table client de notre base de donnée
      */
     public void afficherClient() {
 
         //Récupération connexion BDD, instanciation classe bddSQL
-        bddSQL bdd = new bddSQL();
+        BddSQL bdd = new BddSQL();
         bdd.connexionBdd();
-        
-           
+
+        JFrameMain frm1 = new JFrameMain();
         //Configuration de la seconde JFrame qui va afficher notre liste de client
         JFrame frame2 = new JFrame("Liste des clients"); //Ce qui as dans la chaîne de caractère va définir le titre de la fenêtre
+
         frame2.setLayout(new FlowLayout());
         frame2.setSize(800, 800); //On définis la taille de la Frame
-        
- 
+
         //Configuration de notre JTable et du DefaultModel
         DefaultTableModel defaultTableModel = new DefaultTableModel();
         table = new JTable(defaultTableModel);
         table.setPreferredScrollableViewportSize(new Dimension(600, 600));
         table.setFillsViewportHeight(true);
         frame2.add(new JScrollPane(table));
+
+        //
         defaultTableModel.addColumn("idClient");
         defaultTableModel.addColumn("nomClient");
         defaultTableModel.addColumn("prenomClient");
         defaultTableModel.addColumn("Email");
         defaultTableModel.addColumn("num_telephone");
-             
+
         try {
- 
+
             Statement st = bdd.connexion.createStatement();//création de l'objet Statement
             String sql = "SELECT * FROM client";//Requete SQL qui va sélectionner tous nos champs
             ResultSet resultSet = st.executeQuery(sql);//Execution de notre requête SQL
- 
- 
+
             while (resultSet.next()) {
-             
-             //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
                 String id = resultSet.getString(1); //on récupère nos tuples du champs id
                 String nom = resultSet.getString(2); //on récupère nos tuples du champs nom
                 String prenom = resultSet.getString(3); //on récupère nos tuples du champs prenom
@@ -268,10 +295,42 @@ public class JFrameAgent extends javax.swing.JFrame {
                 defaultTableModel.addRow(new Object[]{id, nom, prenom, email, numTel});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
                 frame2.setVisible(true);//On définis la visibilité de notre fenêtre sur TRUE (Ce qui permet de l'afficher)
                 frame2.validate();
-                    
+
             }
- 
+
         } catch (SQLException throwables) {
+        }
+    }
+
+    /**
+     * Cette méthode permet de choisir une catégorie et d'afficher les produits
+     * lié à cette catégories
+     */
+    public void comboboxCategorie() {
+
+        try {
+
+            BddSQL bdd = new BddSQL();
+            bdd.connexionBdd();
+
+            Statement st = bdd.connexion.createStatement();
+            ArrayList<String> catNames = new ArrayList<String>();
+            ResultSet Rs = st.executeQuery("SELECT nom_categorie FROM categorie");
+
+            while (Rs.next()) {
+                String groupName = Rs.getString("nom_categorie");
+                System.out.println(groupName);
+
+                catNames.add(groupName);
+                //Ajout des catégories dispo sur la comboBox
+                //jComboBoxCategories.addItem(Rs.getString("nom_categorie"));
+            }
+            Rs.close();
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel(catNames.toArray());
+            jComboBoxCategories.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -285,6 +344,14 @@ public class JFrameAgent extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.afficherClient();
     }//GEN-LAST:event_jButtonAfficherClientActionPerformed
+
+    private void jComboBoxCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriesActionPerformed
+    }//GEN-LAST:event_jComboBoxCategoriesActionPerformed
+
+    private void jTabbedPaneOngletAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneOngletAgentMouseClicked
+        // TODO add your handling code here:
+        this.comboboxCategorie();
+    }//GEN-LAST:event_jTabbedPaneOngletAgentMouseClicked
 
     /**
      * @param args the command line arguments
@@ -328,10 +395,12 @@ public class JFrameAgent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAfficherClient;
     private javax.swing.JButton jButtonCreerClient;
+    private javax.swing.JComboBox<String> jComboBoxCategories;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelEtatInsertionClient;
     private javax.swing.JPanel jPanelCategorieProduit;
     private javax.swing.JPanel jPanelClientConf;

@@ -5,7 +5,6 @@
  */
 package com.mycompany.ppe3;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,10 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class Formulaire extends javax.swing.JPanel {
 
-   
     //Connection connexion;
-    bddSQL bdd = new bddSQL();
-     
+    BddSQL bdd = new BddSQL();
+    DaoSIO monDao = DaoSIO.getInstance();
+    
     /**
      * Creates new form Formulaire
      */
@@ -112,52 +111,47 @@ public class Formulaire extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Cette méthode permet l'authentification d'un utilisateur 
-     * Elle appelle une méthode de la classe BDDsql qui permet la connexion a la base de donnée
+     * Cette méthode permet l'authentification d'un utilisateur Elle appelle une
+     * méthode de la classe BDDsql qui permet la connexion a la base de donnée
      */
-    private void connexion(){
-        
+    private void connexion() {
+
         String loginUsername = jTextFieldUsernameLogging.getText();
         String loginPassword = jPasswordField.getText();
-        
- 
-        
-        
+
         try {
-            bdd.connexionBdd();
+            //bdd.connexionBdd();
 
             //Traitement
             if (bdd.connexion != null) {
 
                 try ( //Création Statement pour requete / interaction base
-                    Statement st = (Statement) bdd.connexion.createStatement()) {
-                    
+                        Statement st = (Statement) bdd.connexion.createStatement()) {
+
                     String sql = ("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
                     ResultSet result = st.executeQuery(sql);
-                    
 
                     System.out.println(sql);
                     if (result.next()) {
-                        
+
                         JFrameAgent jfrm2 = new JFrameAgent();
-                        
+
                         jfrm2.setVisible(true);
-                        
-                    String sqlPerm = ("SELECT * FROM profil WHERE permission = 1");
-                    ResultSet resultPerm = st.executeQuery(sqlPerm);
-                        if(resultPerm.next()){
-                        
+
+                        String sqlPerm = ("SELECT * FROM profil WHERE permission = 1");
+                        ResultSet resultPerm = st.executeQuery(sqlPerm);
+                        if (resultPerm.next()) {
+
                             jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
                         } else {
                             jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
                         }
-                       
-                        
-                        
+
                         jTextFieldUsernameLogging.setEnabled(false);
                         jPasswordField.setEnabled(false);
                         jButtonLogging.setEnabled(false);
                         jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
+
                         System.out.println("Authentification enabled, user was founded");
                     } else {
                         //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
@@ -166,7 +160,7 @@ public class Formulaire extends javax.swing.JPanel {
                         JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
                                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                                 null, options, options[0]);
-                        
+
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,9 +172,8 @@ public class Formulaire extends javax.swing.JPanel {
 
         }
     }
-    
-    
-    
+
+
     private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
 
         this.connexion();
