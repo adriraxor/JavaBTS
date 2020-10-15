@@ -6,7 +6,7 @@
 package com.mycompany.ppe3;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFrameAgent extends javax.swing.JFrame {
 
+    JTable table;
+
     /**
      * Creates new form JFrameAgent
      */
-    JTable table;
-
     public JFrameAgent() {
         initComponents();
+        this.afficherClient();
     }
 
     /**
@@ -43,39 +42,163 @@ public class JFrameAgent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPaneOngletAgent = new javax.swing.JTabbedPane();
-        jPanelClientConf = new javax.swing.JPanel();
-        jButtonCreerClient = new javax.swing.JButton();
+        jDialogUpdateClient = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldUpdateNom = new javax.swing.JTextField();
+        jTextFieldUpdatePrenom = new javax.swing.JTextField();
+        jTextFieldUpdateEmail = new javax.swing.JTextField();
+        jTextFieldUpdateNumTel = new javax.swing.JTextField();
+        jButtonUpdateC = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jDialogAjouterClient = new javax.swing.JDialog();
+        jTextFieldTelClient = new javax.swing.JTextField();
+        jTextFieldEmailClient = new javax.swing.JTextField();
+        jTextFieldNomClient = new javax.swing.JTextField();
+        jTextFieldPrenomClient = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldEmailClient = new javax.swing.JTextField();
-        jTextFieldPrenomClient = new javax.swing.JTextField();
-        jTextFieldTelClient = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextFieldNomClient = new javax.swing.JTextField();
-        jLabelEtatInsertionClient = new javax.swing.JLabel();
-        jButtonAfficherClient = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jButtonInsertionClient = new javax.swing.JButton();
+        jTabbedPaneOngletAgent = new javax.swing.JTabbedPane();
+        jPanelClientConf = new javax.swing.JPanel();
+        jButtonOpenDialogInsert = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableClient = new javax.swing.JTable();
+        jButtonOpenDialogUpdate = new javax.swing.JButton();
         jPanelCategorieProduit = new javax.swing.JPanel();
         jComboBoxCategories = new javax.swing.JComboBox<>();
+        jAfficherCat = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCategorie = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jPanelVenteProduit = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jDialogUpdateClient.setTitle("Mettre à jour un client ");
 
-        jTabbedPaneOngletAgent.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-        jTabbedPaneOngletAgent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPaneOngletAgentMouseClicked(evt);
-            }
-        });
+        jLabel7.setText("Nom : ");
 
-        jButtonCreerClient.setText("Création du Client");
-        jButtonCreerClient.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Prenom");
+
+        jLabel9.setText("Email");
+
+        jLabel10.setText("Numero de Téléphone :");
+
+        jTextFieldUpdateNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCreerClientActionPerformed(evt);
+                jTextFieldUpdateNomActionPerformed(evt);
             }
         });
+
+        jTextFieldUpdatePrenom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUpdatePrenomActionPerformed(evt);
+            }
+        });
+
+        jTextFieldUpdateEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUpdateEmailActionPerformed(evt);
+            }
+        });
+
+        jTextFieldUpdateNumTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUpdateNumTelActionPerformed(evt);
+            }
+        });
+
+        jButtonUpdateC.setText("Mettre à jour le client");
+        jButtonUpdateC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateCActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
+        jLabel11.setText("Fenêtre de modification d'un client ");
+        jLabel11.setToolTipText("");
+
+        jLabel6.setText("Modification du client n° :");
+
+        javax.swing.GroupLayout jDialogUpdateClientLayout = new javax.swing.GroupLayout(jDialogUpdateClient.getContentPane());
+        jDialogUpdateClient.getContentPane().setLayout(jDialogUpdateClientLayout);
+        jDialogUpdateClientLayout.setHorizontalGroup(
+            jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jButtonUpdateC, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel11))
+                    .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(27, 27, 27))
+                            .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldID)
+                            .addComponent(jTextFieldUpdateNom, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldUpdateEmail)
+                            .addComponent(jTextFieldUpdatePrenom)
+                            .addComponent(jTextFieldUpdateNumTel, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                .addGap(0, 125, Short.MAX_VALUE))
+        );
+        jDialogUpdateClientLayout.setVerticalGroup(
+            jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldUpdateNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldUpdatePrenom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldUpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextFieldUpdateNumTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addComponent(jButtonUpdateC)
+                .addGap(72, 72, 72))
+        );
+
+        jTextFieldTelClient.setText("0626248056");
+
+        jTextFieldEmailClient.setText("Bernad.test@gmail.com");
+
+        jTextFieldNomClient.setText("Test");
+
+        jTextFieldPrenomClient.setText("Bernard");
+
+        jLabel4.setText("Prenom client :");
 
         jLabel1.setText("Nom client : ");
 
@@ -83,20 +206,101 @@ public class JFrameAgent extends javax.swing.JFrame {
 
         jLabel3.setText("numéro téléphone client : ");
 
-        jTextFieldEmailClient.setText("Bernad.test@gmail.com");
+        jLabel12.setText("Ajouter un client");
 
-        jTextFieldPrenomClient.setText("Bernard");
-
-        jTextFieldTelClient.setText("0626248056");
-
-        jLabel4.setText("Prenom client :");
-
-        jTextFieldNomClient.setText("Test");
-
-        jButtonAfficherClient.setText("Afficher Tous Les Clients");
-        jButtonAfficherClient.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInsertionClient.setText("Valider et ajouter un client");
+        jButtonInsertionClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAfficherClientActionPerformed(evt);
+                jButtonInsertionClientActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogAjouterClientLayout = new javax.swing.GroupLayout(jDialogAjouterClient.getContentPane());
+        jDialogAjouterClient.getContentPane().setLayout(jDialogAjouterClientLayout);
+        jDialogAjouterClientLayout.setHorizontalGroup(
+            jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jButtonInsertionClient)))
+                .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                            .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jDialogAjouterClientLayout.setVerticalGroup(
+            jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addComponent(jButtonInsertionClient)
+                .addGap(73, 73, 73))
+            .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                    .addGap(75, 75, 75)
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(143, Short.MAX_VALUE)))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPaneOngletAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPaneOngletAgentMouseClicked(evt);
+            }
+        });
+
+        jButtonOpenDialogInsert.setText("Création du Client");
+        jButtonOpenDialogInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenDialogInsertActionPerformed(evt);
+            }
+        });
+
+        jTableClient.setModel(new DefaultTableModel());
+        jScrollPane1.setViewportView(jTableClient);
+
+        jButtonOpenDialogUpdate.setText("Modifier un client");
+        jButtonOpenDialogUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenDialogUpdateActionPerformed(evt);
             }
         });
 
@@ -105,73 +309,49 @@ public class JFrameAgent extends javax.swing.JFrame {
         jPanelClientConfLayout.setHorizontalGroup(
             jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelClientConfLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabelEtatInsertionClient, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAfficherClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCreerClient, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonOpenDialogInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonOpenDialogUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(396, 396, 396))
         );
         jPanelClientConfLayout.setVerticalGroup(
             jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelClientConfLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jButtonOpenDialogInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelClientConfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jButtonCreerClient)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonAfficherClient)
-                .addGap(180, 180, 180)
-                .addComponent(jLabelEtatInsertionClient, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addComponent(jButtonOpenDialogUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
         );
 
         jTabbedPaneOngletAgent.addTab("Client Configuration", jPanelClientConf);
 
+        jComboBoxCategories.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxCategoriesMouseClicked(evt);
+            }
+        });
         jComboBoxCategories.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCategoriesActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Filtre Produits");
+        jAfficherCat.setText("Afficher Categorie");
+        jAfficherCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAfficherCatActionPerformed(evt);
+            }
+        });
+
+        jTableCategorie.setModel(new DefaultTableModel());
+        jScrollPane2.setViewportView(jTableCategorie);
+
+        jLabel5.setText("Chercher une categorie de produits");
 
         javax.swing.GroupLayout jPanelCategorieProduitLayout = new javax.swing.GroupLayout(jPanelCategorieProduit);
         jPanelCategorieProduit.setLayout(jPanelCategorieProduitLayout);
@@ -179,19 +359,27 @@ public class JFrameAgent extends javax.swing.JFrame {
             jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCategorieProduitLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(948, Short.MAX_VALUE))
+                .addGroup(jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxCategories, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jAfficherCat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
         );
         jPanelCategorieProduitLayout.setVerticalGroup(
             jPanelCategorieProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCategorieProduitLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel5)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(jComboBoxCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(490, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jAfficherCat)
+                .addGap(138, 138, 138))
+            .addGroup(jPanelCategorieProduitLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPaneOngletAgent.addTab("Catégorie Produits", jPanelCategorieProduit);
@@ -200,11 +388,11 @@ public class JFrameAgent extends javax.swing.JFrame {
         jPanelVenteProduit.setLayout(jPanelVenteProduitLayout);
         jPanelVenteProduitLayout.setHorizontalGroup(
             jPanelVenteProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1192, Short.MAX_VALUE)
+            .addGap(0, 1248, Short.MAX_VALUE)
         );
         jPanelVenteProduitLayout.setVerticalGroup(
             jPanelVenteProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGap(0, 599, Short.MAX_VALUE)
         );
 
         jTabbedPaneOngletAgent.addTab("Vente Produit", jPanelVenteProduit);
@@ -213,7 +401,7 @@ public class JFrameAgent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneOngletAgent)
+            .addComponent(jTabbedPaneOngletAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,54 +411,144 @@ public class JFrameAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTabbedPaneOngletAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneOngletAgentMouseClicked
+        // TODO add your handling code here:
+        this.comboboxCategorie();
+    }//GEN-LAST:event_jTabbedPaneOngletAgentMouseClicked
+
+    private void jComboBoxCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxCategoriesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCategoriesMouseClicked
+
+
+    private void jAfficherCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAfficherCatActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.afficherCatégorie();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jAfficherCatActionPerformed
+
+    private void jComboBoxCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCategoriesActionPerformed
+
+    /**
+     * Ce bouton est inséré dans la jDialog correspondant à la modification d'un
+     * client Ce bouton à pour effet de mettre à jour les informations d'un
+     * client (Nom, Prenom, Email, NumTelephone) grâce à une requête sql de type
+     * UPDATE
+     *
+     * @param evt
+     */
+    private void jButtonUpdateCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCActionPerformed
+        // TODO add your handling code here   
+        DaoSIO.getInstance().requeteAction("UPDATE client SET nom = '" + jTextFieldUpdateNom.getText() + "', prenom = '" + jTextFieldUpdatePrenom.getText() + "', email = '" + jTextFieldUpdateEmail.getText() + "', num_telephone = '" + jTextFieldUpdateNumTel.getText() + "'WHERE idClient = " + jTextFieldID.getText() + "");
+        this.afficherClient();
+    }//GEN-LAST:event_jButtonUpdateCActionPerformed
+
+    private void jTextFieldUpdateNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateNomActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTextFieldUpdateNomActionPerformed
+
+    private void jTextFieldUpdatePrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdatePrenomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdatePrenomActionPerformed
+
+    private void jTextFieldUpdateEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateEmailActionPerformed
+
+    private void jTextFieldUpdateNumTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateNumTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateNumTelActionPerformed
+
+    /**
+     * Bouton qui permet d'afficher une jDialog
+     *
+     * La jDialog va afficher des champs de saisies qui vont permettre la
+     * modification d'un client Les champs de saisies sont pré-remplis avec les
+     * informations de la ligne sélectionner de la jTable qui correspond au
+     * client à modifer
+     *
+     * @param evt
+     */
+    private void jButtonOpenDialogUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenDialogUpdateActionPerformed
+        // TODO add your handling code here:
+        //**jDialog (lors du clique sur le bouton cela va afficher une fenêtre dans lequel la modification d'un client pourras être effectué
+        jDialogUpdateClient.setVisible(true); //On définis la jDialog sur une visibilité de type "Vraie" c'est à dire que l'on rend visible la fenêtre jDialog
+        jDialogUpdateClient.setSize(500, 600); //On définis les dimensions de la jDialog
+        jDialogUpdateClient.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
+        jDialogUpdateClient.setLocationRelativeTo(this); //On centre la fenêtre lors de l'ouverture
+        int ligne = jTableClient.getSelectedRow(); //On récupère le numéro de ligne de la jTable
+        System.out.println(ligne + 1); //Affiche dans le terminal le numéro de ligne (Pas important pour l'état finale de l'application, seulement en cas de débug)
+
+        //Récupération des valeurs de la ligne sélectionner
+        String idClient = jTableClient.getModel().getValueAt(ligne, 0).toString(); //Variable "idClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String nomClient = jTableClient.getModel().getValueAt(ligne, 1).toString(); //Variable "nomClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String prenomClient = jTableClient.getModel().getValueAt(ligne, 2).toString(); //Variable "prenomClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String emailClient = jTableClient.getModel().getValueAt(ligne, 3).toString(); //Variable "emailClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String numTelClient = jTableClient.getModel().getValueAt(ligne, 4).toString(); //Variable "numTelClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+
+        jTextFieldID.disable(); //On interdit la modification de l'id du client à l'aide de Disable
+        jTextFieldID.setText(idClient); //On auto-rempli notre champs Id par l'id du client de la ligne sélectionner
+        jTextFieldUpdateNom.setText(nomClient); //On auto-rempli notre champs nom par le nom du client de la ligne sélectionner
+        jTextFieldUpdatePrenom.setText(prenomClient); //On auto-rempli notre champs prenom par le prenom du client de la ligne sélectionner
+        jTextFieldUpdateEmail.setText(emailClient); //On auto-rempli notre champs email par l'email du client de la ligne sélectionner
+        jTextFieldUpdateNumTel.setText(numTelClient); //On auto-rempli notre champs numTelClient par le numéro de telephone du client de la ligne sélectionner
+    }//GEN-LAST:event_jButtonOpenDialogUpdateActionPerformed
+
+    private void jButtonOpenDialogInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenDialogInsertActionPerformed
+        // TODO add your handling code here:
+        jDialogAjouterClient.setVisible(true); //On définis la jDialog sur une visibilité de type "Vraie" c'est à dire que l'on rend visible la fenêtre jDialog
+        jDialogAjouterClient.setSize(500, 600); //On définis les dimensions de la jDialog
+        jDialogAjouterClient.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
+        jDialogAjouterClient.setLocationRelativeTo(this); //On centre la fenêtre lors de l'ouverture
+    }//GEN-LAST:event_jButtonOpenDialogInsertActionPerformed
+
+    /**
+     * Bouton qui appartient à la jDialog de l'insertion, de l'ajout d'un client
+     *
+     * @param evt
+     */
+    private void jButtonInsertionClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertionClientActionPerformed
+        // TODO add your handling code here
+        this.InsertionClient(); //On insére le nouveau client grâce à la méthode Insertion Client (1)
+        this.afficherClient(); //On actualise l'affichage de notre jTable (2)
+    }//GEN-LAST:event_jButtonInsertionClientActionPerformed
+
     /**
      * Cette méthode nous permet de créer des clients Techniquement parlant nous
      * allons insérer nos clients dans notre table client via un INSERT INTO
      * client VALUES XXXXXXXXXXXXXXX
      */
-    public void requeteInsertionClient() {
-
-        BddSQL bdd = new BddSQL();
-        bdd.connexionBdd();
-
-        try {
-            Statement requete = bdd.connexion.createStatement();
-            String sql = ("INSERT INTO client (nom, prenom, Email, num_telephone) VALUES ('" + jTextFieldNomClient.getText() + "', '" + jTextFieldPrenomClient.getText() + "','" + jTextFieldEmailClient.getText() + "'," + jTextFieldTelClient.getText() + ")");
-            requete.executeUpdate(sql);
-            jLabelEtatInsertionClient.setText("Insertion Réussi du client : " + jTextFieldPrenomClient.getText() + "." + jTextFieldNomClient.getText());
-
-        } catch (SQLException ex) {
-            Logger.getLogger(BddSQL.class.getName()).log(Level.SEVERE, null, ex);
-            jLabelEtatInsertionClient.setText("Insertion échoué du client !");
-        }
-
+    public void InsertionClient() {
+        DaoSIO.getInstance().requeteAction("INSERT INTO client (nom, prenom, Email, num_telephone) VALUES ('" + jTextFieldNomClient.getText() + "', '" + jTextFieldPrenomClient.getText() + "','" + jTextFieldEmailClient.getText() + "'," + jTextFieldTelClient.getText() + ")");
     }
 
     /**
      * Méthode qui va nous permettre d'afficher la liste de tous les clients
      * appartenant à notre table client de notre base de donnée
+     *
+     * Cette méthode est recommandé pour être appelé dans un bouton ou autre
+     * événement cliquable
      */
     public void afficherClient() {
-
-        //Récupération connexion BDD, instanciation classe bddSQL
+        //Etape de connexion temporaire à notre base de données (Modification future avec DaoSIO
         BddSQL bdd = new BddSQL();
         bdd.connexionBdd();
 
-        JFrameMain frm1 = new JFrameMain();
-        //Configuration de la seconde JFrame qui va afficher notre liste de client
-        JFrame frame2 = new JFrame("Liste des clients"); //Ce qui as dans la chaîne de caractère va définir le titre de la fenêtre
-
-        frame2.setLayout(new FlowLayout());
-        frame2.setSize(800, 800); //On définis la taille de la Frame
-
-        //Configuration de notre JTable et du DefaultModel
+        //Création de l'objet de type DefaultTableModel qui sera lié à notre jTable des clients
         DefaultTableModel defaultTableModel = new DefaultTableModel();
         table = new JTable(defaultTableModel);
         table.setPreferredScrollableViewportSize(new Dimension(600, 600));
         table.setFillsViewportHeight(true);
-        frame2.add(new JScrollPane(table));
 
-        //
+        //////////////////////////////////////////////////
+        //*******AJOUT DES COLONNES A NOTRE JTABLE******//
+        //////////////////////////////////////////////////
         defaultTableModel.addColumn("idClient");
         defaultTableModel.addColumn("nomClient");
         defaultTableModel.addColumn("prenomClient");
@@ -279,9 +557,7 @@ public class JFrameAgent extends javax.swing.JFrame {
 
         try {
 
-            Statement st = bdd.connexion.createStatement();//création de l'objet Statement
-            String sql = "SELECT * FROM client";//Requete SQL qui va sélectionner tous nos champs
-            ResultSet resultSet = st.executeQuery(sql);//Execution de notre requête SQL
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM client"); //Selection, Récupération de tous nos clients issus de notre base de données SQL de la table client 
 
             while (resultSet.next()) {
 
@@ -293,65 +569,87 @@ public class JFrameAgent extends javax.swing.JFrame {
                 String numTel = resultSet.getString(5); //on récupère nos tuples du champs num_telephone
 
                 defaultTableModel.addRow(new Object[]{id, nom, prenom, email, numTel});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
-                frame2.setVisible(true);//On définis la visibilité de notre fenêtre sur TRUE (Ce qui permet de l'afficher)
-                frame2.validate();
+            }
+            jTableClient.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
+
+    public void afficherCatégorie() throws SQLException {
+        //Etapes de connexion BDD (Temporaire car changement avec DaoSIO à effectuer******) 
+        BddSQL bdd = new BddSQL();
+        bdd.connexionBdd();
+
+        //Création de l'objet DefaultTableModel qui sera lié à notre jTable
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        table = new JTable(defaultTableModel); //Création de l'objet JTable avec comme paramètre notre model 
+        table.setPreferredScrollableViewportSize(new Dimension(600, 600)); //On defenis la possibilité des scrolls ainsi que les dimensions
+        table.setFillsViewportHeight(true);
+
+        //////////////////////////////////////////////////
+        //*******AJOUT DES COLONNES A NOTRE JTABLE******//
+        //////////////////////////////////////////////////
+        defaultTableModel.addColumn("idProduit");
+        defaultTableModel.addColumn("Marque");
+        defaultTableModel.addColumn("Prix / Tarif HT");
+        defaultTableModel.addColumn("Stock");
+        defaultTableModel.addColumn("Fiche Technique");
+        defaultTableModel.addColumn("Photo");
+        defaultTableModel.addColumn("Popularité");
+
+        try {
+
+            Statement st = bdd.connexion.createStatement();//création de l'objet Statement
+            String sql = "SELECT * FROM produit";//Requete SQL qui va sélectionner tous nos champs
+            ResultSet resultSet = st.executeQuery(sql);//Execution de notre requête SQL
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String id = resultSet.getString(1); //on récupère nos tuples du champs id
+                String marque = resultSet.getString(2); //on récupère nos tuples du champs nom
+                String prix = resultSet.getString(3); //on récupère nos tuples du champs prenom
+                String stock = resultSet.getString(4); //on récupère nos tuples du champs Email
+                String fichetech = resultSet.getString(5); //on récupère nos tuples du champs num_telephone
+                String photo = resultSet.getString(6); //on récupère nos tuples du champs photo
+                String popularite = resultSet.getString(7); //on récupère nos tuples du champs popularite
+                defaultTableModel.addRow(new Object[]{id, marque, prix, stock, fichetech, photo, popularite});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
 
             }
-
+            jTableCategorie.setModel(defaultTableModel);
         } catch (SQLException throwables) {
         }
     }
 
     /**
      * Cette méthode permet de choisir une catégorie et d'afficher les produits
-     * lié à cette catégories
+     * lié à cette catégories grâce à une comboBox
      */
     public void comboboxCategorie() {
-
+        BddSQL bdd = new BddSQL();
         try {
-
-            BddSQL bdd = new BddSQL();
             bdd.connexionBdd();
-
             Statement st = bdd.connexion.createStatement();
+
             ArrayList<String> catNames = new ArrayList<String>();
-            ResultSet Rs = st.executeQuery("SELECT nom_categorie FROM categorie");
+            ResultSet Rs = st.executeQuery("SELECT nom_categorie FROM categorie"); //Requête SQL qui permet d'afficher TOUTES les catégories
 
             while (Rs.next()) {
                 String groupName = Rs.getString("nom_categorie");
-                System.out.println(groupName);
-
                 catNames.add(groupName);
-                //Ajout des catégories dispo sur la comboBox
-                //jComboBoxCategories.addItem(Rs.getString("nom_categorie"));
             }
+
             Rs.close();
 
             DefaultComboBoxModel model = new DefaultComboBoxModel(catNames.toArray());
+            System.out.println(jComboBoxCategories.getSelectedItem());
             jComboBoxCategories.setModel(model);
+
         } catch (SQLException ex) {
-            Logger.getLogger(JFrameAgent.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFrameAgent.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-    private void jButtonCreerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreerClientActionPerformed
-        // TODO add your handling code here:    
-        this.requeteInsertionClient();
-    }//GEN-LAST:event_jButtonCreerClientActionPerformed
-
-    private void jButtonAfficherClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAfficherClientActionPerformed
-        // TODO add your handling code here:
-        this.afficherClient();
-    }//GEN-LAST:event_jButtonAfficherClientActionPerformed
-
-    private void jComboBoxCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriesActionPerformed
-    }//GEN-LAST:event_jComboBoxCategoriesActionPerformed
-
-    private void jTabbedPaneOngletAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneOngletAgentMouseClicked
-        // TODO add your handling code here:
-        this.comboboxCategorie();
-    }//GEN-LAST:event_jTabbedPaneOngletAgentMouseClicked
 
     /**
      * @param args the command line arguments
@@ -393,22 +691,42 @@ public class JFrameAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAfficherClient;
-    private javax.swing.JButton jButtonCreerClient;
+    private javax.swing.JButton jAfficherCat;
+    private javax.swing.JButton jButtonInsertionClient;
+    private javax.swing.JButton jButtonOpenDialogInsert;
+    private javax.swing.JButton jButtonOpenDialogUpdate;
+    private javax.swing.JButton jButtonUpdateC;
     private javax.swing.JComboBox<String> jComboBoxCategories;
+    private javax.swing.JDialog jDialogAjouterClient;
+    private javax.swing.JDialog jDialogUpdateClient;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelEtatInsertionClient;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelCategorieProduit;
     private javax.swing.JPanel jPanelClientConf;
     private javax.swing.JPanel jPanelVenteProduit;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPaneOngletAgent;
+    private javax.swing.JTable jTableCategorie;
+    private javax.swing.JTable jTableClient;
     private javax.swing.JTextField jTextFieldEmailClient;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldNomClient;
     private javax.swing.JTextField jTextFieldPrenomClient;
     private javax.swing.JTextField jTextFieldTelClient;
+    private javax.swing.JTextField jTextFieldUpdateEmail;
+    private javax.swing.JTextField jTextFieldUpdateNom;
+    private javax.swing.JTextField jTextFieldUpdateNumTel;
+    private javax.swing.JTextField jTextFieldUpdatePrenom;
     // End of variables declaration//GEN-END:variables
 }

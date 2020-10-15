@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.ppe3;
+
 /**
  *
  * @author c.nadal
@@ -97,7 +98,6 @@ public class DaoSIO {
      * @return
      */
     public ResultSet requeteSelection(String sql) {
-
         try {
             Statement requete = new DaoSIO().connexion.createStatement();
             return requete.executeQuery(sql);
@@ -127,4 +127,4 @@ public class DaoSIO {
         return 0;
 
     }
-} 
+}
