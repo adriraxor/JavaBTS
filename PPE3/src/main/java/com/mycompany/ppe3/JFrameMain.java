@@ -15,7 +15,8 @@ public class JFrameMain extends javax.swing.JFrame {
      * Creates new form JFrameMain
      */
     public JFrameMain() {
-        initComponents();      
+        initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**

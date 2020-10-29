@@ -113,68 +113,49 @@ public class Formulaire extends javax.swing.JPanel {
      */
     private void connexion() {
         
-        BddSQL bdd = new BddSQL();
+        
         String loginUsername = jTextFieldUsernameLogging.getText();
         String loginPassword = jPasswordField.getText();
         
 
-        try {
-            bdd.connexionBdd();
-
-            //Traitement
-            if (bdd.connexion != null) {
-
-                try ( //Création Statement pour requete / interaction base
-                        Statement st = (Statement) bdd.connexion.createStatement()) {
-
-                    String sql = ("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
-                    ResultSet result = st.executeQuery(sql);
-
-                    System.out.println(sql);
-                    if (result.next()) {
-
-                        JFrameAgent jfrm2 = new JFrameAgent();
+        //Traitement
+        if (DaoSIO.getInstance() != null) {
+            
+            try {
+                ResultSet result = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
+                if (result.next()) {
+                    
+                    JFrameAgent jfrm2 = new JFrameAgent();
+                    
+                    jfrm2.setVisible(true);
+                    
+                    ResultSet resultPerm = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil WHERE permission = 1");
+                    if (resultPerm.next()) {
                         
-                        
-                        
-                        
-                        jfrm2.setVisible(true);
-                        
-                        
-
-                        String sqlPerm = ("SELECT * FROM profil WHERE permission = 1");
-                        ResultSet resultPerm = st.executeQuery(sqlPerm);
-                        if (resultPerm.next()) {
-
-                            jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
-                        } else {
-                            jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
-                        }
-
-                        jTextFieldUsernameLogging.setEnabled(false);
-                        jPasswordField.setEnabled(false);
-                        jButtonLogging.setEnabled(false);
-                        jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
-
-                        System.out.println("Authentification enabled, user was founded");
-                        
+                        jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
                     } else {
-                        //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
-                        Object[] options = {"OK"};
-                        System.out.println("Authentification Failed not user found");
-                        JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-                                null, options, options[0]);
-
+                        jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    jTextFieldUsernameLogging.setEnabled(false);
+                    jPasswordField.setEnabled(false);
+                    jButtonLogging.setEnabled(false);
+                    jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
+                    
+                    System.out.println("Authentification enabled, user was founded");
+                    
+                } else {
+                    //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
+                    Object[] options = {"OK"};
+                    System.out.println("Authentification Failed not user found");
+                    JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                            null, options, options[0]);
+                    
                 }
-                bdd.connexion.close();
-
+            } catch (SQLException ex) {
+                Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException e) {
-
         }
     }
 

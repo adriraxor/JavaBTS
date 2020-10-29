@@ -60,7 +60,6 @@ public class DaoSIO {
         } catch (SQLException ex) {
             Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**

@@ -8,6 +8,8 @@ package com.mycompany.ppe3;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,14 +19,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFrameAdmin extends javax.swing.JFrame {
 
-    JTable tablePrd;
-
     /**
      * Creates new form JFrameAdmin
      */
     public JFrameAdmin() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.setResizable(false);
         this.afficherProduit();
+        this.afficherAgent();
+        this.afficherProfil();
     }
 
     /**
@@ -41,14 +45,56 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDescriptionProduit = new javax.swing.JTextArea();
         jTextFieldStockProduit = new javax.swing.JTextField();
         jTextFieldNomProduit = new javax.swing.JTextField();
         jTextFieldTarifProduit = new javax.swing.JTextField();
-        jFileChooserProduit = new javax.swing.JFileChooser();
         jLabel9 = new javax.swing.JLabel();
+        jButtonAjoutProduit = new javax.swing.JButton();
+        jDialogSupprimerProduit = new javax.swing.JDialog();
+        jButtonValiderSuppresion = new javax.swing.JButton();
+        jButtonAnnulerSuppression = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jDialogUpdateProduit = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextFieldUpdateNomPRD = new javax.swing.JTextField();
+        jTextFieldUpdateTarifPRD = new javax.swing.JTextField();
+        jTextFieldUpdateStockPRD = new javax.swing.JTextField();
+        jButtonUpdatePRD = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jTextFieldIDPRD = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaDescriptionPRD = new javax.swing.JTextArea();
+        jDialogModifAgent = new javax.swing.JDialog();
+        jTextFieldIdAgentModif = new javax.swing.JTextField();
+        jTextFieldPrenomAgentModif = new javax.swing.JTextField();
+        jTextFieldNumTelAgentModif = new javax.swing.JTextField();
+        jTextFieldNomAgentModif = new javax.swing.JTextField();
+        jTextFieldIdProfilAgentModif = new javax.swing.JTextField();
+        jLabelIdAgentModif = new javax.swing.JLabel();
+        jLabelNomAgentModif = new javax.swing.JLabel();
+        jLabelPrenomAgentModif = new javax.swing.JLabel();
+        jLabelNumTelAgentModif = new javax.swing.JLabel();
+        jLabelIdProfilAgentModif = new javax.swing.JLabel();
+        jButtonVoirProfilAssocie = new javax.swing.JButton();
+        jTextFieldUsernameProfilAssocie = new javax.swing.JTextField();
+        jTextFieldPasswordProfilAssocie = new javax.swing.JTextField();
+        jTextFieldEmailProfilAssocie = new javax.swing.JTextField();
+        jTextFieldStatutProfilAssocie = new javax.swing.JTextField();
+        jTextFieldNumTelProfilAssocie = new javax.swing.JTextField();
+        jLabelPseudoProfilAssocie = new javax.swing.JLabel();
+        jLabelPasswordProfilAssocie = new javax.swing.JLabel();
+        jLabelEmailProfilAssocie = new javax.swing.JLabel();
+        jLabelStatutProfilAssocie = new javax.swing.JLabel();
+        jLabelNumTelProfilAssocie = new javax.swing.JLabel();
+        jButtonUpdateAgentModifStep2 = new javax.swing.JButton();
+        jButtonUpdateAgentModifStep1 = new javax.swing.JButton();
         jTabbedPaneAdmin = new javax.swing.JTabbedPane();
         jPanelGestioCatProduit = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -58,7 +104,12 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jButtonDelProduit = new javax.swing.JButton();
         jButtonAddProduit = new javax.swing.JButton();
         jPanelGestionClient = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableAfficherAgent = new javax.swing.JTable();
+        jButtonSupprimerUnAgent = new javax.swing.JButton();
+        jButtonModifierAgent1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTableProfil = new javax.swing.JTable();
         jPanelGestionVente = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanelStatVente = new javax.swing.JPanel();
@@ -73,51 +124,51 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
         jLabel7.setText("Description du produit : ");
 
-        jLabel8.setText("Insérez une image/photo du produit : ");
-
         jTextAreaDescriptionProduit.setColumns(20);
         jTextAreaDescriptionProduit.setRows(5);
         jScrollPane2.setViewportView(jTextAreaDescriptionProduit);
 
         jLabel9.setText("Ajout d'un produit");
 
+        jButtonAjoutProduit.setText("Valider Ajout Produit");
+        jButtonAjoutProduit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjoutProduitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jDialogAjouterProduitLayout = new javax.swing.GroupLayout(jDialogAjouterProduit.getContentPane());
         jDialogAjouterProduit.getContentPane().setLayout(jDialogAjouterProduitLayout);
         jDialogAjouterProduitLayout.setHorizontalGroup(
             jDialogAjouterProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jDialogAjouterProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jDialogAjouterProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2))
-                            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldStockProduit))
-                            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(5, 5, 5)
-                                .addComponent(jTextFieldNomProduit))
-                            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTarifProduit))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2))
                     .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jFileChooserProduit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 84, Short.MAX_VALUE)))
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldStockProduit))
+                    .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addComponent(jTextFieldNomProduit))
+                    .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldTarifProduit)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogAjouterProduitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 343, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(285, 285, 285))
+            .addGroup(jDialogAjouterProduitLayout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addComponent(jButtonAjoutProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDialogAjouterProduitLayout.setVerticalGroup(
             jDialogAjouterProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,180 +191,544 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jDialogAjouterProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jFileChooserProduit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jButtonAjoutProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jDialogSupprimerProduit.setSize(new java.awt.Dimension(500, 300));
 
-        jTabbedPaneAdmin.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-
-        jTableListeProduit.setModel(new DefaultTableModel());
-        jScrollPane1.setViewportView(jTableListeProduit);
-
-        jButtonUpdateProduit.setText("Modifier un Produit");
-        jButtonUpdateProduit.addActionListener(new java.awt.event.ActionListener() {
+        jButtonValiderSuppresion.setText("Valider");
+        jButtonValiderSuppresion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateProduitActionPerformed(evt);
+                jButtonValiderSuppresionActionPerformed(evt);
             }
         });
 
-        jButtonDelProduit.setText("Supprimer un Produit");
-        jButtonDelProduit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDelProduitActionPerformed(evt);
-            }
-        });
+        jButtonAnnulerSuppression.setText("Annuler");
 
-        jButtonAddProduit.setText("Ajouter un Produit");
-        jButtonAddProduit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddProduitActionPerformed(evt);
-            }
-        });
+        jLabel10.setText("/!\\ Vous êtes sur le point de supprimer un produit /!\\");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAddProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDelProduit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButtonAddProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonDelProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+            jLabel11.setText("Vous êtes sur de vouloir supprimer le produit :");
 
-        javax.swing.GroupLayout jPanelGestioCatProduitLayout = new javax.swing.GroupLayout(jPanelGestioCatProduit);
-        jPanelGestioCatProduit.setLayout(jPanelGestioCatProduitLayout);
-        jPanelGestioCatProduitLayout.setHorizontalGroup(
-            jPanelGestioCatProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanelGestioCatProduitLayout.setVerticalGroup(
-            jPanelGestioCatProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+            javax.swing.GroupLayout jDialogSupprimerProduitLayout = new javax.swing.GroupLayout(jDialogSupprimerProduit.getContentPane());
+            jDialogSupprimerProduit.getContentPane().setLayout(jDialogSupprimerProduitLayout);
+            jDialogSupprimerProduitLayout.setHorizontalGroup(
+                jDialogSupprimerProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogSupprimerProduitLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jDialogSupprimerProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogSupprimerProduitLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel11))
+                        .addGroup(jDialogSupprimerProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jDialogSupprimerProduitLayout.createSequentialGroup()
+                                .addComponent(jButtonAnnulerSuppression)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonValiderSuppresion))
+                            .addComponent(jLabel10)))
+                    .addContainerGap())
+            );
+            jDialogSupprimerProduitLayout.setVerticalGroup(
+                jDialogSupprimerProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogSupprimerProduitLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel10)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel11)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addGroup(jDialogSupprimerProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonValiderSuppresion)
+                        .addComponent(jButtonAnnulerSuppression))
+                    .addContainerGap())
+            );
 
-        jTabbedPaneAdmin.addTab("Gestion Produit et Catégorie", jPanelGestioCatProduit);
+            jDialogUpdateProduit.setTitle("Mettre à jour un client ");
 
-        jLabel1.setText("Modifier Client (id nom prenom etc...)");
+            jLabel8.setText("Nom : ");
 
-        javax.swing.GroupLayout jPanelGestionClientLayout = new javax.swing.GroupLayout(jPanelGestionClient);
-        jPanelGestionClient.setLayout(jPanelGestionClientLayout);
-        jPanelGestionClientLayout.setHorizontalGroup(
-            jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                .addGap(405, 405, 405)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(448, Short.MAX_VALUE))
-        );
-        jPanelGestionClientLayout.setVerticalGroup(
-            jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(391, Short.MAX_VALUE))
-        );
+            jLabel12.setText("Tarif :");
 
-        jTabbedPaneAdmin.addTab("Gestion des clients", jPanelGestionClient);
+            jLabel13.setText("Stock Produit :");
 
-        jLabel3.setText("Afficher vente effectuer par un agent à un client");
+            jLabel14.setText("Description Produit :");
 
-        javax.swing.GroupLayout jPanelGestionVenteLayout = new javax.swing.GroupLayout(jPanelGestionVente);
-        jPanelGestionVente.setLayout(jPanelGestionVenteLayout);
-        jPanelGestionVenteLayout.setHorizontalGroup(
-            jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                .addGap(383, 383, 383)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(402, Short.MAX_VALUE))
-        );
-        jPanelGestionVenteLayout.setVerticalGroup(
-            jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
-        );
+            jTextFieldUpdateNomPRD.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateNomPRDActionPerformed(evt);
+                }
+            });
 
-        jTabbedPaneAdmin.addTab("Gestion des ventes", jPanelGestionVente);
+            jTextFieldUpdateTarifPRD.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateTarifPRDActionPerformed(evt);
+                }
+            });
 
-        jLabel4.setText("Produit nombre de fois vendus");
+            jTextFieldUpdateStockPRD.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateStockPRDActionPerformed(evt);
+                }
+            });
 
-        javax.swing.GroupLayout jPanelStatVenteLayout = new javax.swing.GroupLayout(jPanelStatVente);
-        jPanelStatVente.setLayout(jPanelStatVenteLayout);
-        jPanelStatVenteLayout.setHorizontalGroup(
-            jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatVenteLayout.createSequentialGroup()
-                .addContainerGap(403, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(385, 385, 385))
-        );
-        jPanelStatVenteLayout.setVerticalGroup(
-            jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelStatVenteLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
-        );
+            jButtonUpdatePRD.setText("Mettre à jour le produit");
+            jButtonUpdatePRD.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonUpdatePRDActionPerformed(evt);
+                }
+            });
 
-        jTabbedPaneAdmin.addTab("Statistique vente", jPanelStatVente);
+            jLabel15.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
+            jLabel15.setText("Fenêtre de modification d'un produit ");
+            jLabel15.setToolTipText("");
 
-        javax.swing.GroupLayout jPanelFactureLayout = new javax.swing.GroupLayout(jPanelFacture);
-        jPanelFacture.setLayout(jPanelFactureLayout);
-        jPanelFactureLayout.setHorizontalGroup(
-            jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1188, Short.MAX_VALUE)
-        );
-        jPanelFactureLayout.setVerticalGroup(
-            jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
+            jTextFieldIDPRD.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldIDPRDActionPerformed(evt);
+                }
+            });
 
-        jTabbedPaneAdmin.addTab("Generer Facture", jPanelFacture);
+            jLabel16.setText("Modification du produit n° :");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneAdmin)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneAdmin)
-        );
+            jTextAreaDescriptionPRD.setColumns(20);
+            jTextAreaDescriptionPRD.setRows(5);
+            jScrollPane3.setViewportView(jTextAreaDescriptionPRD);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            javax.swing.GroupLayout jDialogUpdateProduitLayout = new javax.swing.GroupLayout(jDialogUpdateProduit.getContentPane());
+            jDialogUpdateProduit.getContentPane().setLayout(jDialogUpdateProduitLayout);
+            jDialogUpdateProduitLayout.setHorizontalGroup(
+                jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                            .addGap(156, 156, 156)
+                            .addComponent(jLabel15))
+                        .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                            .addGap(102, 102, 102)
+                            .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                                            .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(27, 27, 27))
+                                        .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextFieldIDPRD, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldUpdateNomPRD, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextFieldUpdateStockPRD)
+                                            .addComponent(jTextFieldUpdateTarifPRD))))
+                                .addComponent(jButtonUpdatePRD, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(0, 86, Short.MAX_VALUE))
+            );
+            jDialogUpdateProduitLayout.setVerticalGroup(
+                jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogUpdateProduitLayout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldIDPRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldUpdateNomPRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldUpdateTarifPRD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldUpdateStockPRD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel14)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(31, 31, 31)
+                    .addComponent(jButtonUpdatePRD)
+                    .addGap(34, 34, 34))
+            );
+
+            jTextFieldIdAgentModif.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldIdAgentModifActionPerformed(evt);
+                }
+            });
+
+            jLabelIdAgentModif.setText("Id de l'agent :");
+
+            jLabelNomAgentModif.setText("Nom de l'agent :");
+
+            jLabelPrenomAgentModif.setText("Prenom de l'agent :");
+
+            jLabelNumTelAgentModif.setText("Numéro de tél. de l'agent :");
+
+            jLabelIdProfilAgentModif.setText("Id de profil associé :");
+
+            jButtonVoirProfilAssocie.setText("Voir le profil de l'agent");
+            jButtonVoirProfilAssocie.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jButtonVoirProfilAssocieMouseClicked(evt);
+                }
+            });
+            jButtonVoirProfilAssocie.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonVoirProfilAssocieActionPerformed(evt);
+                }
+            });
+
+            jLabelPseudoProfilAssocie.setText("Pseudo Profil : ");
+
+            jLabelPasswordProfilAssocie.setText("Mot de Passe Profil : ");
+
+            jLabelEmailProfilAssocie.setText("Adresse Email Profil :");
+
+            jLabelStatutProfilAssocie.setText("Statut du Profil (ex : 1 = Admin et 0 = Agent) :");
+
+            jLabelNumTelProfilAssocie.setText("Numero Tel Profil :");
+
+            jButtonUpdateAgentModifStep2.setText("Valider les modifications de l'agent ET du profil");
+            jButtonUpdateAgentModifStep2.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jButtonUpdateAgentModifStep2MouseClicked(evt);
+                }
+            });
+            jButtonUpdateAgentModifStep2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonUpdateAgentModifStep2ActionPerformed(evt);
+                }
+            });
+
+            jButtonUpdateAgentModifStep1.setText("Valider les modifications de l'agent");
+            jButtonUpdateAgentModifStep1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jButtonUpdateAgentModifStep1MouseClicked(evt);
+                }
+            });
+            jButtonUpdateAgentModifStep1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonUpdateAgentModifStep1ActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jDialogModifAgentLayout = new javax.swing.GroupLayout(jDialogModifAgent.getContentPane());
+            jDialogModifAgent.getContentPane().setLayout(jDialogModifAgentLayout);
+            jDialogModifAgentLayout.setHorizontalGroup(
+                jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                    .addContainerGap(34, Short.MAX_VALUE)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogModifAgentLayout.createSequentialGroup()
+                                .addComponent(jLabelIdAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldIdAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(253, 253, 253))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogModifAgentLayout.createSequentialGroup()
+                                .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                                        .addComponent(jLabelNomAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldNomAgentModif))
+                                    .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                                        .addComponent(jLabelPrenomAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldPrenomAgentModif))
+                                    .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                                        .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabelNumTelAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 142, Short.MAX_VALUE)
+                                            .addComponent(jLabelIdProfilAgentModif, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonUpdateAgentModifStep1)
+                                            .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                                                    .addComponent(jTextFieldIdProfilAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(jButtonVoirProfilAssocie))
+                                                .addComponent(jTextFieldNumTelAgentModif)))))
+                                .addGap(96, 96, 96)))
+                        .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                            .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelPseudoProfilAssocie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelPasswordProfilAssocie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelEmailProfilAssocie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelStatutProfilAssocie)
+                                .addComponent(jLabelNumTelProfilAssocie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29)
+                            .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldStatutProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldEmailProfilAssocie, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                .addComponent(jTextFieldPasswordProfilAssocie)
+                                .addComponent(jTextFieldUsernameProfilAssocie)
+                                .addComponent(jTextFieldNumTelProfilAssocie))
+                            .addGap(104, 104, 104))))
+                .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                    .addGap(138, 138, 138)
+                    .addComponent(jButtonUpdateAgentModifStep2)
+                    .addGap(0, 0, Short.MAX_VALUE))
+            );
+            jDialogModifAgentLayout.setVerticalGroup(
+                jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelIdAgentModif)
+                        .addComponent(jTextFieldIdAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNomAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNomAgentModif))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPrenomAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelPrenomAgentModif))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNumTelAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNumTelAgentModif))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldIdProfilAgentModif, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelIdProfilAgentModif)
+                        .addComponent(jButtonVoirProfilAssocie))
+                    .addGap(18, 18, 18)
+                    .addComponent(jButtonUpdateAgentModifStep1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(73, 73, 73)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabelEmailProfilAssocie)
+                        .addGroup(jDialogModifAgentLayout.createSequentialGroup()
+                            .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldUsernameProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelPseudoProfilAssocie))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldPasswordProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelPasswordProfilAssocie))
+                            .addGap(11, 11, 11)
+                            .addComponent(jTextFieldEmailProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldNumTelProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNumTelProfilAssocie))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jDialogModifAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldStatutProfilAssocie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelStatutProfilAssocie))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(jButtonUpdateAgentModifStep2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(35, 35, 35))
+            );
+
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+            jTabbedPaneAdmin.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+
+            jTableListeProduit.setModel(new DefaultTableModel());
+            jScrollPane1.setViewportView(jTableListeProduit);
+
+            jButtonUpdateProduit.setText("Modifier un Produit");
+            jButtonUpdateProduit.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonUpdateProduitActionPerformed(evt);
+                }
+            });
+
+            jButtonDelProduit.setText("Supprimer un Produit");
+            jButtonDelProduit.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonDelProduitActionPerformed(evt);
+                }
+            });
+
+            jButtonAddProduit.setText("Ajouter un Produit");
+            jButtonAddProduit.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonAddProduitActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonAddProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonDelProduit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap())
+            );
+            jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(jButtonAddProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButtonDelProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+
+            javax.swing.GroupLayout jPanelGestioCatProduitLayout = new javax.swing.GroupLayout(jPanelGestioCatProduit);
+            jPanelGestioCatProduit.setLayout(jPanelGestioCatProduitLayout);
+            jPanelGestioCatProduitLayout.setHorizontalGroup(
+                jPanelGestioCatProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE))
+            );
+            jPanelGestioCatProduitLayout.setVerticalGroup(
+                jPanelGestioCatProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+
+            jTabbedPaneAdmin.addTab("Gestion Produit et Catégorie", jPanelGestioCatProduit);
+
+            jTableAfficherAgent.setModel(new DefaultTableModel());
+            jTableAfficherAgent.setToolTipText("");
+            jScrollPane4.setViewportView(jTableAfficherAgent);
+
+            jButtonSupprimerUnAgent.setText("/!\\ Supprimer l'agent sélectionner /!\\");
+
+                jButtonModifierAgent1.setText("Modifier l'intégralité des informations de l'agent sélectionner");
+                jButtonModifierAgent1.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonModifierAgent1ActionPerformed(evt);
+                    }
+                });
+
+                jTableProfil.setModel(new DefaultTableModel());
+                jTableProfil.getTableHeader().setReorderingAllowed(false);
+                jScrollPane5.setViewportView(jTableProfil);
+
+                javax.swing.GroupLayout jPanelGestionClientLayout = new javax.swing.GroupLayout(jPanelGestionClient);
+                jPanelGestionClient.setLayout(jPanelGestionClientLayout);
+                jPanelGestionClientLayout.setHorizontalGroup(
+                    jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                        .addGap(335, 335, 335)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jButtonModifierAgent1)
+                            .addContainerGap(866, Short.MAX_VALUE)))
+                );
+                jPanelGestionClientLayout.setVerticalGroup(
+                    jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionClientLayout.createSequentialGroup()
+                        .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jButtonModifierAgent1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(599, Short.MAX_VALUE)))
+                );
+
+                jTabbedPaneAdmin.addTab("Gestion des clients", jPanelGestionClient);
+
+                jLabel3.setText("Afficher vente effectuer par un agent à un client");
+
+                javax.swing.GroupLayout jPanelGestionVenteLayout = new javax.swing.GroupLayout(jPanelGestionVente);
+                jPanelGestionVente.setLayout(jPanelGestionVenteLayout);
+                jPanelGestionVenteLayout.setHorizontalGroup(
+                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(409, Short.MAX_VALUE))
+                );
+                jPanelGestionVenteLayout.setVerticalGroup(
+                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(436, Short.MAX_VALUE))
+                );
+
+                jTabbedPaneAdmin.addTab("Gestion des ventes", jPanelGestionVente);
+
+                jLabel4.setText("Produit nombre de fois vendus");
+
+                javax.swing.GroupLayout jPanelStatVenteLayout = new javax.swing.GroupLayout(jPanelStatVente);
+                jPanelStatVente.setLayout(jPanelStatVenteLayout);
+                jPanelStatVenteLayout.setHorizontalGroup(
+                    jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatVenteLayout.createSequentialGroup()
+                        .addContainerGap(410, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(385, 385, 385))
+                );
+                jPanelStatVenteLayout.setVerticalGroup(
+                    jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelStatVenteLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(434, Short.MAX_VALUE))
+                );
+
+                jTabbedPaneAdmin.addTab("Statistique vente", jPanelStatVente);
+
+                javax.swing.GroupLayout jPanelFactureLayout = new javax.swing.GroupLayout(jPanelFacture);
+                jPanelFacture.setLayout(jPanelFactureLayout);
+                jPanelFactureLayout.setHorizontalGroup(
+                    jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 1195, Short.MAX_VALUE)
+                );
+                jPanelFactureLayout.setVerticalGroup(
+                    jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 686, Short.MAX_VALUE)
+                );
+
+                jTabbedPaneAdmin.addTab("Generer Facture", jPanelFacture);
+
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+                getContentPane().setLayout(layout);
+                layout.setHorizontalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPaneAdmin)
+                );
+                layout.setVerticalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPaneAdmin)
+                );
+
+                pack();
+            }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddProduitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProduitActionPerformed
         // TODO add your handling code here:
-        //**jDialog (lors du clique sur le bouton cela va afficher une fenêtre dans lequel la modification d'un client pourras être effectué
+        //**jDialog (lors du clique sur le bouton cela va afficher une fenêtre dans lequel l'ajout d'un produit pourras être effectué
         jDialogAjouterProduit.setVisible(true); //On définis la jDialog sur une visibilité de type "Vraie" c'est à dire que l'on rend visible la fenêtre jDialog
         jDialogAjouterProduit.setSize(1000, 1000); //On définis les dimensions de la jDialog
         jDialogAjouterProduit.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
@@ -322,16 +737,180 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
     private void jButtonDelProduitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDelProduitActionPerformed
         // TODO add your handling code here:
+        jDialogSupprimerProduit.setVisible(true);
+        jDialogSupprimerProduit.setSize(310, 125);
+        jDialogSupprimerProduit.setResizable(false);
+        jDialogSupprimerProduit.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButtonDelProduitActionPerformed
 
     private void jButtonUpdateProduitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateProduitActionPerformed
         // TODO add your handling code here:
+        jDialogUpdateProduit.setVisible(true);
+        jDialogUpdateProduit.setSize(740, 500);
+        jDialogUpdateProduit.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
+        jDialogUpdateProduit.setLocationRelativeTo(this);
+
+        int recupLigne = jTableListeProduit.getSelectedRow();
+        String idProduit = jTableListeProduit.getModel().getValueAt(recupLigne, 0).toString();
+        String nomProduit = jTableListeProduit.getModel().getValueAt(recupLigne, 1).toString();
+        String tarifProduit = jTableListeProduit.getModel().getValueAt(recupLigne, 2).toString();
+        String stockProduit = jTableListeProduit.getModel().getValueAt(recupLigne, 3).toString();
+        String descriptionProduit = jTableListeProduit.getModel().getValueAt(recupLigne, 4).toString();
+
+        jTextFieldIDPRD.disable();
+        jTextFieldIDPRD.setText(idProduit);
+        jTextFieldUpdateNomPRD.setText(nomProduit);
+        jTextFieldUpdateTarifPRD.setText(tarifProduit);
+        jTextFieldUpdateStockPRD.setText(stockProduit);
+        jTextAreaDescriptionPRD.setText(descriptionProduit);
     }//GEN-LAST:event_jButtonUpdateProduitActionPerformed
+
+    private void jButtonValiderSuppresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderSuppresionActionPerformed
+        // TODO add your handling code here:
+        int recupLigne = jTableListeProduit.getSelectedRow();
+        DaoSIO.getInstance().requeteAction("DELETE FROM produit WHERE idProduit = " + jTableListeProduit.getModel().getValueAt(recupLigne, 0));
+        this.afficherProduit(); // Actualisation de la jTable produit dans l'application JAVA
+        jDialogSupprimerProduit.setVisible(false);
+    }//GEN-LAST:event_jButtonValiderSuppresionActionPerformed
+
+    private void jButtonAjoutProduitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjoutProduitActionPerformed
+        // TODO add your handling code here:
+        DaoSIO.getInstance().requeteAction("INSERT INTO produit (nom_produit, tarif_produit, stock, libelle, popularite) VALUES ('" + jTextFieldNomProduit.getText() + "', " + jTextFieldTarifProduit.getText() + "," + jTextFieldStockProduit.getText() + ",'" + jTextAreaDescriptionProduit.getText() + "', 5)");
+        this.afficherProduit();
+    }//GEN-LAST:event_jButtonAjoutProduitActionPerformed
+
+    private void jTextFieldUpdateNomPRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateNomPRDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateNomPRDActionPerformed
+
+    private void jTextFieldUpdateTarifPRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateTarifPRDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateTarifPRDActionPerformed
+
+    private void jTextFieldUpdateStockPRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateStockPRDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateStockPRDActionPerformed
+
+    private void jButtonUpdatePRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePRDActionPerformed
+        // TODO add your handling code here
+        DaoSIO.getInstance().requeteAction("UPDATE produit SET nom_produit = '" + jTextFieldUpdateNomPRD.getText() + "', tarif_produit = " + jTextFieldUpdateTarifPRD.getText() + ", stock = " + jTextFieldUpdateStockPRD.getText() + ", libelle = '" + jTextAreaDescriptionPRD.getText() + "'WHERE idProduit = " + jTextFieldIDPRD.getText() + "");
+        this.afficherProduit();
+    }//GEN-LAST:event_jButtonUpdatePRDActionPerformed
+
+    private void jTextFieldIDPRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDPRDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDPRDActionPerformed
+
+    private void jTextFieldIdAgentModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdAgentModifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIdAgentModifActionPerformed
+
+    private void jButtonModifierAgent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierAgent1ActionPerformed
+        // TODO add your handling code here:
+        jDialogModifAgent.setVisible(true);
+        jDialogModifAgent.setSize(500, 500);
+        jDialogModifAgent.setResizable(false);
+        jDialogModifAgent.setLocationRelativeTo(this);
+
+        int recupLigneAgent = jTableAfficherAgent.getSelectedRow();
+        String idAgent = jTableAfficherAgent.getModel().getValueAt(recupLigneAgent, 0).toString();
+        String nomAgent = jTableAfficherAgent.getModel().getValueAt(recupLigneAgent, 1).toString();
+        String prenomAgent = jTableAfficherAgent.getModel().getValueAt(recupLigneAgent, 2).toString();
+        String numTelAgent = jTableAfficherAgent.getModel().getValueAt(recupLigneAgent, 3).toString();
+        String idProfilAgent = jTableAfficherAgent.getModel().getValueAt(recupLigneAgent, 4).toString();
+
+        //#######Formulaire modification des informations UNIQUEMENT de l'agent############//
+        jTextFieldIdAgentModif.disable();
+        jTextFieldIdProfilAgentModif.disable();
+        jTextFieldIdAgentModif.setText(idAgent);
+        jTextFieldNomAgentModif.setText(nomAgent);
+        jTextFieldPrenomAgentModif.setText(prenomAgent);
+        jTextFieldNumTelAgentModif.setText(numTelAgent);
+        jTextFieldIdProfilAgentModif.setText(idProfilAgent);
+        
+        jButtonUpdateAgentModifStep1.setVisible(true);
+        
+        //######Formulaire modification des informations de l'agent +++++ du PROFIL Associé qui se rajoute lors du clique du bouton "Voir profil"######
+        jLabelPseudoProfilAssocie.setVisible(false);
+        jLabelPasswordProfilAssocie.setVisible(false);
+        jLabelEmailProfilAssocie.setVisible(false);
+        jLabelNumTelProfilAssocie.setVisible(false);
+        jLabelStatutProfilAssocie.setVisible(false);
+
+        jTextFieldUsernameProfilAssocie.setVisible(false);
+        jTextFieldPasswordProfilAssocie.setVisible(false);
+        jTextFieldEmailProfilAssocie.setVisible(false);
+        jTextFieldNumTelProfilAssocie.setVisible(false);
+        jTextFieldStatutProfilAssocie.setVisible(false);
+
+        jButtonUpdateAgentModifStep2.setVisible(false);
+
+
+    }//GEN-LAST:event_jButtonModifierAgent1ActionPerformed
+
+    private void jButtonVoirProfilAssocieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVoirProfilAssocieMouseClicked
+        // TODO add your handling code here:
+
+        //Lors du clique on affiche le formulaire de modification du profil associé de l'agent sélectionner dans notre jTable
+        jDialogModifAgent.setSize(500, 800);
+        jButtonUpdateAgentModifStep1.setVisible(false);
+
+        //jLabelIdProfilAssocie.setVisible(true);
+        jLabelPseudoProfilAssocie.setVisible(true);
+        jLabelPasswordProfilAssocie.setVisible(true);
+        jLabelEmailProfilAssocie.setVisible(true);
+        jLabelNumTelProfilAssocie.setVisible(true);
+        jLabelStatutProfilAssocie.setVisible(true);
+
+        //jTextFieldIdProfilAssocieModif.setVisible(true);
+        jTextFieldUsernameProfilAssocie.setVisible(true);
+        jTextFieldPasswordProfilAssocie.setVisible(true);
+        jTextFieldEmailProfilAssocie.setVisible(true);
+        jTextFieldNumTelProfilAssocie.setVisible(true);
+        jTextFieldStatutProfilAssocie.setVisible(true);
+        this.recupProfil();
+
+        jButtonUpdateAgentModifStep2.setVisible(true);
+
+
+    }//GEN-LAST:event_jButtonVoirProfilAssocieMouseClicked
+
+    private void jButtonUpdateAgentModifStep1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateAgentModifStep1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateAgentModifStep1ActionPerformed
+
+    private void jButtonUpdateAgentModifStep1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUpdateAgentModifStep1MouseClicked
+        // TODO add your handling code here:
+        DaoSIO.getInstance().requeteAction("UPDATE agent SET nom = '" + jTextFieldNomAgentModif.getText() + "', prenom = '" + jTextFieldPrenomAgentModif.getText() + "', num_telephone = '" + jTextFieldNumTelAgentModif.getText() + "'WHERE idAgent = " + jTextFieldIdAgentModif.getText() + "");
+        jDialogModifAgent.setVisible(false);
+        this.afficherAgent();
+    }//GEN-LAST:event_jButtonUpdateAgentModifStep1MouseClicked
+
+    private void jButtonUpdateAgentModifStep2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateAgentModifStep2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateAgentModifStep2ActionPerformed
+
+    private void jButtonUpdateAgentModifStep2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUpdateAgentModifStep2MouseClicked
+        // TODO add your handling code here:
+        DaoSIO.getInstance().requeteAction("UPDATE agent SET nom = '" + jTextFieldNomAgentModif.getText() + "', prenom = '" + jTextFieldPrenomAgentModif.getText() + "', num_telephone = '" + jTextFieldNumTelAgentModif.getText() + "'WHERE idAgent = " + jTextFieldIdAgentModif.getText() + "");
+        DaoSIO.getInstance().requeteAction("UPDATE profil SET num_telephone = '" + jTextFieldNumTelProfilAssocie.getText() + "', username = '" + jTextFieldUsernameProfilAssocie.getText() + "', password = '" + jTextFieldPasswordProfilAssocie.getText() + "', email = '" + jTextFieldEmailProfilAssocie.getText() + "', permission = " + jTextFieldStatutProfilAssocie.getText() + " WHERE idProfil = " + jTextFieldIdProfilAgentModif.getText() + "");
+        jDialogModifAgent.setVisible(false);
+        this.afficherProfil();
+        this.afficherAgent();
+    }//GEN-LAST:event_jButtonUpdateAgentModifStep2MouseClicked
+
+    private void jButtonVoirProfilAssocieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoirProfilAssocieActionPerformed
+        // TODO add your handling code here:
+         jButtonUpdateAgentModifStep1.setVisible(false);
+    }//GEN-LAST:event_jButtonVoirProfilAssocieActionPerformed
 
     /**
      * Méthode qui permete d'afficher tous les produits
      */
     public void afficherProduit() {
+
+        JTable tablePrd;
+
         //Etape de connexion temporaire à notre base de données (Modification future avec DaoSIO
         DaoSIO.getInstance();
 
@@ -362,7 +941,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 String stockPrd = resultSet.getString(4); //on récupère nos tuples du champs stockProduit
                 String descPrd = resultSet.getString(5); //on récupère nos tuples du champs descriptionProduit
                 String photoPrd = resultSet.getString(6); //on récupère nos tuples du champs photo Produit
-                String evaluationPrd = resultSet.getString(5); //on récupère nos tuples du champs evaluation Produit
+                String evaluationPrd = resultSet.getString(7); //on récupère nos tuples du champs evaluation Produit
 
                 defaultTableModel.addRow(new Object[]{idPrd, nomPrd, tarifPrd, stockPrd, descPrd, photoPrd, evaluationPrd});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
             }
@@ -371,11 +950,111 @@ public class JFrameAdmin extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Methode qui permet d'ajouter un produit
-     */
-    public void ajoutProduit() {
+    public void afficherAgent() {
+        JTable tableAgent;
 
+        DaoSIO.getInstance();
+
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+
+        tableAgent = new JTable(defaultTableModel);
+        tableAgent.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        tableAgent.setFillsViewportHeight(true);
+
+        //Ajout des colonnes à notre jTable
+        defaultTableModel.addColumn("idAgent");
+        defaultTableModel.addColumn("nom de l'agent");
+        defaultTableModel.addColumn("prenom de l'agent");
+        defaultTableModel.addColumn("numéro tel de l'agent");
+        defaultTableModel.addColumn("numero de profil de l'agent");
+
+        try {
+
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM agent"); //Selection, Récupération de tous nos agents issus de notre base de données SQL de la table agent 
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String idAgent = resultSet.getString(1);
+                String nomAgent = resultSet.getString(2);
+                String prenomAgent = resultSet.getString(3);
+                String numTelAgent = resultSet.getString(4);
+                String idProfilAgent = resultSet.getString(5);
+
+                defaultTableModel.addRow(new Object[]{idAgent, nomAgent, prenomAgent, numTelAgent, idProfilAgent});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+            }
+            jTableAfficherAgent.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
+
+
+
+    public void afficherProfil() {
+        JTable tableProfil;
+
+        DaoSIO.getInstance();
+
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+
+        tableProfil = new JTable(defaultTableModel);
+        tableProfil.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        tableProfil.setFillsViewportHeight(true);
+        
+
+        //Ajout des colonnes à notre jTable
+        defaultTableModel.addColumn("idProfil");
+        defaultTableModel.addColumn("Username");
+        defaultTableModel.addColumn("Password");
+        defaultTableModel.addColumn("Num Tel");
+        defaultTableModel.addColumn("Email");
+        defaultTableModel.addColumn("Statut");
+
+        try {
+
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil"); //Selection, Récupération de tous nos agents issus de notre base de données SQL de la table agent 
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String idProfil = resultSet.getString(1);
+                String usernameProfil = resultSet.getString(2);
+                String passwordProfil = resultSet.getString(3);
+                String emailProfil = resultSet.getString(4);
+                String numTelProfil = resultSet.getString(5);
+                String statut = resultSet.getString(6);
+
+                defaultTableModel.addRow(new Object[]{idProfil, usernameProfil, passwordProfil, emailProfil, numTelProfil, statut});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+            }
+            jTableProfil.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
+
+    public void recupProfil() {
+
+        try {
+            ResultSet rs = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil WHERE idProfil = " + jTextFieldIdProfilAgentModif.getText() + "");
+
+            while (rs.next()) {
+
+                //String idProfil = rs.getString(1);
+                String numTelephone = rs.getString(2);
+                String username = rs.getString(3);
+                String password = rs.getString(4);
+                String email = rs.getString(5);
+                String statut = rs.getString(6);
+
+                //jTextFieldIdProfilAssocieModif.setText(idProfil);
+                jTextFieldUsernameProfilAssocie.setText(username);
+                jTextFieldPasswordProfilAssocie.setText(password);
+                jTextFieldEmailProfilAssocie.setText(email);
+                jTextFieldNumTelProfilAssocie.setText(numTelephone);
+                jTextFieldStatutProfilAssocie.setText(statut);
+            }
+        } catch (SQLException throwables) {
+
+        }
     }
 
     /**
@@ -415,11 +1094,28 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddProduit;
+    private javax.swing.JButton jButtonAjoutProduit;
+    private javax.swing.JButton jButtonAnnulerSuppression;
     private javax.swing.JButton jButtonDelProduit;
+    private javax.swing.JButton jButtonModifierAgent1;
+    private javax.swing.JButton jButtonSupprimerUnAgent;
+    private javax.swing.JButton jButtonUpdateAgentModifStep1;
+    private javax.swing.JButton jButtonUpdateAgentModifStep2;
+    private javax.swing.JButton jButtonUpdatePRD;
     private javax.swing.JButton jButtonUpdateProduit;
+    private javax.swing.JButton jButtonValiderSuppresion;
+    private javax.swing.JButton jButtonVoirProfilAssocie;
     private javax.swing.JDialog jDialogAjouterProduit;
-    private javax.swing.JFileChooser jFileChooserProduit;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDialog jDialogModifAgent;
+    private javax.swing.JDialog jDialogSupprimerProduit;
+    private javax.swing.JDialog jDialogUpdateProduit;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -428,6 +1124,16 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelEmailProfilAssocie;
+    private javax.swing.JLabel jLabelIdAgentModif;
+    private javax.swing.JLabel jLabelIdProfilAgentModif;
+    private javax.swing.JLabel jLabelNomAgentModif;
+    private javax.swing.JLabel jLabelNumTelAgentModif;
+    private javax.swing.JLabel jLabelNumTelProfilAssocie;
+    private javax.swing.JLabel jLabelPasswordProfilAssocie;
+    private javax.swing.JLabel jLabelPrenomAgentModif;
+    private javax.swing.JLabel jLabelPseudoProfilAssocie;
+    private javax.swing.JLabel jLabelStatutProfilAssocie;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelFacture;
     private javax.swing.JPanel jPanelGestioCatProduit;
@@ -436,11 +1142,31 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelStatVente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPaneAdmin;
+    private javax.swing.JTable jTableAfficherAgent;
     private javax.swing.JTable jTableListeProduit;
+    private javax.swing.JTable jTableProfil;
+    private javax.swing.JTextArea jTextAreaDescriptionPRD;
     private javax.swing.JTextArea jTextAreaDescriptionProduit;
+    private javax.swing.JTextField jTextFieldEmailProfilAssocie;
+    private javax.swing.JTextField jTextFieldIDPRD;
+    private javax.swing.JTextField jTextFieldIdAgentModif;
+    private javax.swing.JTextField jTextFieldIdProfilAgentModif;
+    private javax.swing.JTextField jTextFieldNomAgentModif;
     private javax.swing.JTextField jTextFieldNomProduit;
+    private javax.swing.JTextField jTextFieldNumTelAgentModif;
+    private javax.swing.JTextField jTextFieldNumTelProfilAssocie;
+    private javax.swing.JTextField jTextFieldPasswordProfilAssocie;
+    private javax.swing.JTextField jTextFieldPrenomAgentModif;
+    private javax.swing.JTextField jTextFieldStatutProfilAssocie;
     private javax.swing.JTextField jTextFieldStockProduit;
     private javax.swing.JTextField jTextFieldTarifProduit;
+    private javax.swing.JTextField jTextFieldUpdateNomPRD;
+    private javax.swing.JTextField jTextFieldUpdateStockPRD;
+    private javax.swing.JTextField jTextFieldUpdateTarifPRD;
+    private javax.swing.JTextField jTextFieldUsernameProfilAssocie;
     // End of variables declaration//GEN-END:variables
 }
