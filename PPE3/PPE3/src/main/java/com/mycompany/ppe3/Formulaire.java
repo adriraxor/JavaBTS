@@ -5,11 +5,9 @@
  */
 package com.mycompany.ppe3;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,10 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class Formulaire extends javax.swing.JPanel {
 
-   
     //Connection connexion;
-    BddSQL bdd = new BddSQL();
-     
+    
+    //DaoSIO monDao = DaoSIO.getInstance();
+    
     /**
      * Creates new form Formulaire
      */
@@ -45,16 +43,19 @@ public class Formulaire extends javax.swing.JPanel {
         jTextFieldUsernameLogging = new javax.swing.JTextField();
         jButtonLogging = new javax.swing.JButton();
         jLabelEtatConnexion = new javax.swing.JLabel();
-        jLabelTitle = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Username :");
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Password :");
 
         jTextFieldUsernameLogging.setText("Adriraxor");
+        jTextFieldUsernameLogging.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonLogging.setText("Connexion");
+        jButtonLogging.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonLogging.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLoggingActionPerformed(evt);
@@ -63,130 +64,104 @@ public class Formulaire extends javax.swing.JPanel {
 
         jLabelEtatConnexion.setText("Non Connecter");
 
-        jLabelTitle.setFont(new java.awt.Font("Caladea", 1, 18)); // NOI18N
-        jLabelTitle.setText("Authentification");
-
         jPasswordField.setText("root");
+        jPasswordField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelEtatConnexion)
+                        .addGap(208, 208, 208))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                            .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                            .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPasswordField)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelEtatConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                            .addComponent(jTextFieldUsernameLogging)
+                            .addComponent(jPasswordField)
+                            .addComponent(jButtonLogging, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabelTitle)
-                .addGap(95, 95, 95)
+                .addGap(132, 132, 132)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(44, 44, 44)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldUsernameLogging, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jButtonLogging)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(jButtonLogging, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelEtatConnexion)
-                .addContainerGap())
+                .addContainerGap(120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Cette méthode permet l'authentification d'un utilisateur 
-     * Elle appelle une méthode de la classe BDDsql qui permet la connexion a la base de donnée
+     * Cette méthode permet l'authentification d'un utilisateur Elle appelle une
+     * méthode de la classe BDDsql qui permet la connexion a la base de donnée
      */
-    private void connexion(){
+    private void connexion() {
+        
         
         String loginUsername = jTextFieldUsernameLogging.getText();
         String loginPassword = jPasswordField.getText();
         
- 
-        
-        
-        try {
-            bdd.connexionBdd();
 
-            //Traitement
-            if (bdd.connexion != null) {
-
-                try ( //Création Statement pour requete / interaction base
-                    Statement st = (Statement) bdd.connexion.createStatement()) {
+        //Traitement
+        if (DaoSIO.getInstance() != null) {
+            
+            try {
+                ResultSet result = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
+                if (result.next()) {
                     
-                    String sql = ("SELECT * FROM profil WHERE username = '" + loginUsername + "' AND password = '" + loginPassword + "'");
-                    ResultSet result = st.executeQuery(sql);
+                    JFrameAgent jfrm2 = new JFrameAgent();
                     
-
-                    System.out.println(sql);
-                    if (result.next()) {
+                    jfrm2.setVisible(true);
+                    
+                    ResultSet resultPerm = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil WHERE permission = 1");
+                    if (resultPerm.next()) {
                         
-                        JFrameAgent jfrm2 = new JFrameAgent();
-                        
-                        
-                        jfrm2.setVisible(true);
-                       
-                        
-                        
-                    String sqlPerm = ("SELECT * FROM profil WHERE permission = 1");
-                    ResultSet resultPerm = st.executeQuery(sqlPerm);
-                        if(resultPerm.next()){
-                        
-                            jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
-                        } else {
-                            jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
-                        }
-                       
-                        
-                        
-                        jTextFieldUsernameLogging.setEnabled(false);
-                        jPasswordField.setEnabled(false);
-                        jButtonLogging.setEnabled(false);
-                        jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
-                        
-                        System.out.println("Authentification enabled, user was founded");
+                        jfrm2.setTitle("Vous êtes authentifié en tant que Agent : " + loginUsername);
                     } else {
-                        //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
-                        Object[] options = {"OK"};
-                        System.out.println("Authentification Failed not user found");
-                        JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-                                null, options, options[0]);
-                        
+                        jfrm2.setTitle("Vous êtes authentifié en tant que Administrateur : " + loginUsername);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    jTextFieldUsernameLogging.setEnabled(false);
+                    jPasswordField.setEnabled(false);
+                    jButtonLogging.setEnabled(false);
+                    jLabelEtatConnexion.setText("Connecté avec : " + jTextFieldUsernameLogging.getText());
+                    
+                    System.out.println("Authentification enabled, user was founded");
+                    
+                } else {
+                    //JOptionPane.showMessageDialog(this, "Connexion échoué, utilisateur non existant !");
+                    Object[] options = {"OK"};
+                    System.out.println("Authentification Failed not user found");
+                    JOptionPane.showOptionDialog(null, "Connexion échouée, utilisateur non trouvé !", "Erreur de connexion",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                            null, options, options[0]);
+                    
                 }
-                bdd.connexion.close();
-
+            } catch (SQLException ex) {
+                Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException e) {
-
         }
     }
-    
-    
-    
-    private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
 
+
+    private void jButtonLoggingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoggingActionPerformed
+        
         this.connexion();
     }//GEN-LAST:event_jButtonLoggingActionPerformed
 
@@ -196,7 +171,6 @@ public class Formulaire extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelEtatConnexion;
-    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldUsernameLogging;
     // End of variables declaration//GEN-END:variables
