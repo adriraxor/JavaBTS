@@ -8,8 +8,6 @@ package com.mycompany.ppe3;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -110,11 +108,16 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jButtonModifierAgent1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableProfil = new javax.swing.JTable();
-        jPanelGestionVente = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jPanelStatVente = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanelFacture = new javax.swing.JPanel();
+        jPanelGestionVente = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setText("Nom Produit : ");
 
@@ -531,8 +534,6 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            jTabbedPaneAdmin.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-
             jTableListeProduit.setModel(new DefaultTableModel());
             jScrollPane1.setViewportView(jTableListeProduit);
 
@@ -634,7 +635,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
                         .addGroup(jPanelGestionClientLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jButtonModifierAgent1)
-                            .addContainerGap(866, Short.MAX_VALUE)))
+                            .addContainerGap(1040, Short.MAX_VALUE)))
                 );
                 jPanelGestionClientLayout.setVerticalGroup(
                     jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,27 +658,6 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
                 jTabbedPaneAdmin.addTab("Gestion des clients", jPanelGestionClient);
 
-                jLabel3.setText("Afficher vente effectuer par un agent à un client");
-
-                javax.swing.GroupLayout jPanelGestionVenteLayout = new javax.swing.GroupLayout(jPanelGestionVente);
-                jPanelGestionVente.setLayout(jPanelGestionVenteLayout);
-                jPanelGestionVenteLayout.setHorizontalGroup(
-                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                        .addGap(383, 383, 383)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(409, Short.MAX_VALUE))
-                );
-                jPanelGestionVenteLayout.setVerticalGroup(
-                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(436, Short.MAX_VALUE))
-                );
-
-                jTabbedPaneAdmin.addTab("Gestion des ventes", jPanelGestionVente);
-
                 jLabel4.setText("Produit nombre de fois vendus");
 
                 javax.swing.GroupLayout jPanelStatVenteLayout = new javax.swing.GroupLayout(jPanelStatVente);
@@ -685,7 +665,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 jPanelStatVenteLayout.setHorizontalGroup(
                     jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatVenteLayout.createSequentialGroup()
-                        .addContainerGap(410, Short.MAX_VALUE)
+                        .addContainerGap(634, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(385, 385, 385))
                 );
@@ -703,7 +683,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 jPanelFacture.setLayout(jPanelFactureLayout);
                 jPanelFactureLayout.setHorizontalGroup(
                     jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 1195, Short.MAX_VALUE)
+                    .addGap(0, 1419, Short.MAX_VALUE)
                 );
                 jPanelFactureLayout.setVerticalGroup(
                     jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,6 +691,53 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 );
 
                 jTabbedPaneAdmin.addTab("Generer Facture", jPanelFacture);
+
+                jTable1.setModel(new DefaultTableModel());
+                jScrollPane6.setViewportView(jTable1);
+
+                jButton1.setText("Générer la facture sous forme .PDF");
+
+                jLabel1.setText("Pour la vente sélectionner dans le tableau");
+
+                jButton2.setText("Annuler la vente (Suppression)");
+
+                jLabel3.setText("Pour la vente sélectionner dans le tableau");
+
+                javax.swing.GroupLayout jPanelGestionVenteLayout = new javax.swing.GroupLayout(jPanelGestionVente);
+                jPanelGestionVente.setLayout(jPanelGestionVenteLayout);
+                jPanelGestionVenteLayout.setHorizontalGroup(
+                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(57, Short.MAX_VALUE))
+                );
+                jPanelGestionVenteLayout.setVerticalGroup(
+                    jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jLabel3))
+                        .addContainerGap(261, Short.MAX_VALUE))
+                );
+
+                jTabbedPaneAdmin.addTab("Gestion des ventes", jPanelGestionVente);
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -1031,6 +1058,46 @@ public class JFrameAdmin extends javax.swing.JFrame {
         }
     }
 
+    public void afficherVente(){
+        JTable tableVente;
+
+        DaoSIO.getInstance();
+
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+
+        tableVente = new JTable(defaultTableModel);
+        tableVente.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        tableVente.setFillsViewportHeight(true);
+        
+
+        //Ajout des colonnes à notre jTable
+        defaultTableModel.addColumn("idProfil");
+        defaultTableModel.addColumn("Username");
+        defaultTableModel.addColumn("Password");
+        defaultTableModel.addColumn("Num Tel");
+        defaultTableModel.addColumn("Email");
+        defaultTableModel.addColumn("Statut");
+
+        try {
+
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM profil"); //Selection, Récupération de tous nos agents issus de notre base de données SQL de la table agent 
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String idProfil = resultSet.getString(1);
+                String usernameProfil = resultSet.getString(2);
+                String passwordProfil = resultSet.getString(3);
+                String emailProfil = resultSet.getString(4);
+                String numTelProfil = resultSet.getString(5);
+                String statut = resultSet.getString(6);
+
+                defaultTableModel.addRow(new Object[]{idProfil, usernameProfil, passwordProfil, emailProfil, numTelProfil, statut});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+            }
+            jTableProfil.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
     public void recupProfil() {
 
         try {
@@ -1093,6 +1160,8 @@ public class JFrameAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddProduit;
     private javax.swing.JButton jButtonAjoutProduit;
     private javax.swing.JButton jButtonAnnulerSuppression;
@@ -1109,6 +1178,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JDialog jDialogModifAgent;
     private javax.swing.JDialog jDialogSupprimerProduit;
     private javax.swing.JDialog jDialogUpdateProduit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1145,7 +1215,9 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPaneAdmin;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableAfficherAgent;
     private javax.swing.JTable jTableListeProduit;
     private javax.swing.JTable jTableProfil;
