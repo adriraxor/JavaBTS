@@ -14,7 +14,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * JFrame comportant tous les outils pour les administrateurs si un administrateur est bien authentifier
+ * Elle comporte tous les onglets de gestions.
+ * Diverses méthodes sont disponible comme : afficherProduit(), afficherAgent(), afficherVente(), afficherProfil(), afficherClient()
+ * Et bien d'autres qui pourrons effectuer des actions
  * @author FIGUERES Adrien
  */
 public class JFrameAdmin extends javax.swing.JFrame {
@@ -22,13 +25,19 @@ public class JFrameAdmin extends javax.swing.JFrame {
     /**
      * Creates new form JFrameAdmin
      */
-    public JFrameAdmin() {
+    public JFrameAdmin() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setResizable(false);
         this.afficherProduit();
         this.afficherAgent();
+        this.afficherVente();
         this.afficherProfil();
+        this.afficherClient();
+        this.venteLaPlusEleve();
+        this.nbTotalVente();
+        this.chiffreAffaireTotal();
+        this.produitPlusPopulaire();
     }
 
     /**
@@ -95,6 +104,30 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jLabelNumTelProfilAssocie = new javax.swing.JLabel();
         jButtonUpdateAgentModifStep2 = new javax.swing.JButton();
         jButtonUpdateAgentModifStep1 = new javax.swing.JButton();
+        jDialogAjouterClient = new javax.swing.JDialog();
+        jTextFieldTelClient = new javax.swing.JTextField();
+        jTextFieldEmailClient = new javax.swing.JTextField();
+        jTextFieldNomClient = new javax.swing.JTextField();
+        jTextFieldPrenomClient = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jButtonInsertionClient = new javax.swing.JButton();
+        jDialogUpdateClient = new javax.swing.JDialog();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextFieldUpdateNom = new javax.swing.JTextField();
+        jTextFieldUpdatePrenom = new javax.swing.JTextField();
+        jTextFieldUpdateEmail = new javax.swing.JTextField();
+        jTextFieldUpdateNumTel = new javax.swing.JTextField();
+        jButtonUpdateC = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jTabbedPaneAdmin = new javax.swing.JTabbedPane();
         jPanelGestioCatProduit = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -103,18 +136,40 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jButtonUpdateProduit = new javax.swing.JButton();
         jButtonDelProduit = new javax.swing.JButton();
         jButtonAddProduit = new javax.swing.JButton();
-        jPanelGestionClient = new javax.swing.JPanel();
+        jLabelMsgPop1 = new javax.swing.JLabel();
+        jLabelMsgPop2 = new javax.swing.JLabel();
+        jLabelMsgPop3 = new javax.swing.JLabel();
+        jPanelGestionAgent = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableAfficherAgent = new javax.swing.JTable();
         jButtonSupprimerUnAgent = new javax.swing.JButton();
         jButtonModifierAgent1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableProfil = new javax.swing.JTable();
-        jPanelGestionVente = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanelStatVente = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanelFacture = new javax.swing.JPanel();
+        jPanelGestionDesClients = new javax.swing.JPanel();
+        jButtonOpenDialogInsertClient = new javax.swing.JButton();
+        jButtonOpenDialogUpdate = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTableClient = new javax.swing.JTable();
+        jButtonDelClient = new javax.swing.JButton();
+        jPanelGestionVente = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableListeVente = new javax.swing.JTable();
+        jButtonDelVente = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelStatistiques = new javax.swing.JLabel();
+        jLabelStatVenteTotal = new javax.swing.JLabel();
+        jLabelStatNbTotalVente = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabelNbChiffreAffaireTotal = new javax.swing.JLabel();
+        jLabelStatPrdPlusPopulaire = new javax.swing.JLabel();
+        jLabelPrdPlusPopulaire = new javax.swing.JLabel();
+        jLabelStatPlusGrosMontantVente = new javax.swing.JLabel();
+        jLabelPlusGrosMontantUneVente = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
 
         jLabel2.setText("Nom Produit : ");
 
@@ -529,21 +584,218 @@ public class JFrameAdmin extends javax.swing.JFrame {
                     .addGap(35, 35, 35))
             );
 
-            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            jTextFieldTelClient.setText("0626248056");
 
-            jTabbedPaneAdmin.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+            jTextFieldEmailClient.setText("Bernad.test@gmail.com");
+
+            jTextFieldNomClient.setText("Test");
+
+            jTextFieldPrenomClient.setText("Bernard");
+
+            jLabel17.setText("Prenom client :");
+
+            jLabel18.setText("Nom client : ");
+
+            jLabel19.setText("Adresse email client : ");
+
+            jLabel20.setText("numéro téléphone client : ");
+
+            jLabel21.setText("Ajouter un client");
+
+            jButtonInsertionClient.setText("Valider et ajouter un client");
+            jButtonInsertionClient.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonInsertionClientActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jDialogAjouterClientLayout = new javax.swing.GroupLayout(jDialogAjouterClient.getContentPane());
+            jDialogAjouterClient.getContentPane().setLayout(jDialogAjouterClientLayout);
+            jDialogAjouterClientLayout.setHorizontalGroup(
+                jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                    .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                            .addGap(146, 146, 146)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                            .addGap(108, 108, 108)
+                            .addComponent(jButtonInsertionClient)))
+                    .addContainerGap(97, Short.MAX_VALUE))
+                .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                                .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            );
+            jDialogAjouterClientLayout.setVerticalGroup(
+                jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel21)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                    .addComponent(jButtonInsertionClient)
+                    .addGap(73, 73, 73))
+                .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogAjouterClientLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(jTextFieldPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(jTextFieldNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(jTextFieldEmailClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jDialogAjouterClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jTextFieldTelClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(143, Short.MAX_VALUE)))
+            );
+
+            jDialogUpdateClient.setTitle("Mettre à jour un client ");
+
+            jLabel22.setText("Nom : ");
+
+            jLabel23.setText("Prenom");
+
+            jLabel24.setText("Email");
+
+            jLabel25.setText("Numero de Téléphone :");
+
+            jTextFieldUpdateNom.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateNomActionPerformed(evt);
+                }
+            });
+
+            jTextFieldUpdatePrenom.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdatePrenomActionPerformed(evt);
+                }
+            });
+
+            jTextFieldUpdateEmail.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateEmailActionPerformed(evt);
+                }
+            });
+
+            jTextFieldUpdateNumTel.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldUpdateNumTelActionPerformed(evt);
+                }
+            });
+
+            jButtonUpdateC.setText("Mettre à jour le client");
+            jButtonUpdateC.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonUpdateCActionPerformed(evt);
+                }
+            });
+
+            jLabel26.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 14)); // NOI18N
+            jLabel26.setText("Fenêtre de modification d'un client ");
+            jLabel26.setToolTipText("");
+
+            jLabel27.setText("Modification du client n° :");
+
+            javax.swing.GroupLayout jDialogUpdateClientLayout = new javax.swing.GroupLayout(jDialogUpdateClient.getContentPane());
+            jDialogUpdateClient.getContentPane().setLayout(jDialogUpdateClientLayout);
+            jDialogUpdateClientLayout.setHorizontalGroup(
+                jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                            .addGap(102, 102, 102)
+                            .addComponent(jButtonUpdateC, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                            .addGap(156, 156, 156)
+                            .addComponent(jLabel26))
+                        .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                            .addGap(102, 102, 102)
+                            .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(27, 27, 27))
+                                .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)))
+                            .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldID)
+                                .addComponent(jTextFieldUpdateNom, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFieldUpdateEmail)
+                                .addComponent(jTextFieldUpdatePrenom)
+                                .addComponent(jTextFieldUpdateNumTel, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                    .addGap(0, 125, Short.MAX_VALUE))
+            );
+            jDialogUpdateClientLayout.setVerticalGroup(
+                jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialogUpdateClientLayout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel27))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldUpdateNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel22))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldUpdatePrenom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldUpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel24))
+                    .addGap(18, 18, 18)
+                    .addGroup(jDialogUpdateClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel25)
+                        .addComponent(jTextFieldUpdateNumTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(72, 72, 72)
+                    .addComponent(jButtonUpdateC)
+                    .addGap(72, 72, 72))
+            );
+
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
             jTableListeProduit.setModel(new DefaultTableModel());
             jScrollPane1.setViewportView(jTableListeProduit);
 
-            jButtonUpdateProduit.setText("Modifier un Produit");
+            jButtonUpdateProduit.setText("Modifier le produit sélectionner ");
             jButtonUpdateProduit.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButtonUpdateProduitActionPerformed(evt);
                 }
             });
 
-            jButtonDelProduit.setText("Supprimer un Produit");
+            jButtonDelProduit.setText("Supprimer le produit sélectionner");
             jButtonDelProduit.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButtonDelProduitActionPerformed(evt);
@@ -557,6 +809,12 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 }
             });
 
+            jLabelMsgPop1.setText("Vous pouvez voir la popularité");
+
+            jLabelMsgPop2.setText("Popularité du tableau");
+
+            jLabelMsgPop3.setText("Des produits à partir de la colonne");
+
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
             jPanel1Layout.setHorizontalGroup(
@@ -564,8 +822,14 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButtonAddProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonDelProduit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonDelProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelMsgPop1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelMsgPop2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelMsgPop3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
             );
             jPanel1Layout.setVerticalGroup(
@@ -577,6 +841,12 @@ public class JFrameAdmin extends javax.swing.JFrame {
                     .addComponent(jButtonDelProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(jButtonUpdateProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(jLabelMsgPop1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabelMsgPop3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addComponent(jLabelMsgPop2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
@@ -587,12 +857,12 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1257, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
             jPanelGestioCatProduitLayout.setVerticalGroup(
                 jPanelGestioCatProduitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestioCatProduitLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -606,6 +876,11 @@ public class JFrameAdmin extends javax.swing.JFrame {
             jScrollPane4.setViewportView(jTableAfficherAgent);
 
             jButtonSupprimerUnAgent.setText("/!\\ Supprimer l'agent sélectionner /!\\");
+                jButtonSupprimerUnAgent.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonSupprimerUnAgentActionPerformed(evt);
+                    }
+                });
 
                 jButtonModifierAgent1.setText("Modifier l'intégralité des informations de l'agent sélectionner");
                 jButtonModifierAgent1.addActionListener(new java.awt.event.ActionListener() {
@@ -618,109 +893,243 @@ public class JFrameAdmin extends javax.swing.JFrame {
                 jTableProfil.getTableHeader().setReorderingAllowed(false);
                 jScrollPane5.setViewportView(jTableProfil);
 
-                javax.swing.GroupLayout jPanelGestionClientLayout = new javax.swing.GroupLayout(jPanelGestionClient);
-                jPanelGestionClient.setLayout(jPanelGestionClientLayout);
-                jPanelGestionClientLayout.setHorizontalGroup(
-                    jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                jLabel1.setText("Le tableau ci-contre à droite affiche uniquement les profils des agents");
+
+                jLabel4.setText("Si vous voulez modifiez un profil sélectionner le bouton \"Modifier l'intégralité ...\"");
+
+                javax.swing.GroupLayout jPanelGestionAgentLayout = new javax.swing.GroupLayout(jPanelGestionAgent);
+                jPanelGestionAgent.setLayout(jPanelGestionAgentLayout);
+                jPanelGestionAgentLayout.setHorizontalGroup(
+                    jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
+                        .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                        .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jButtonModifierAgent1)
-                            .addContainerGap(866, Short.MAX_VALUE)))
+                            .addComponent(jButtonModifierAgent1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(1130, Short.MAX_VALUE)))
                 );
-                jPanelGestionClientLayout.setVerticalGroup(
-                    jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionClientLayout.createSequentialGroup()
-                        .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelGestionClientLayout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                jPanelGestionAgentLayout.setVerticalGroup(
+                    jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionAgentLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSupprimerUnAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanelGestionClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelGestionClientLayout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                            .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanelGestionAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelGestionAgentLayout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addComponent(jButtonModifierAgent1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(599, Short.MAX_VALUE)))
+                            .addContainerGap(605, Short.MAX_VALUE)))
                 );
 
-                jTabbedPaneAdmin.addTab("Gestion des clients", jPanelGestionClient);
+                jTabbedPaneAdmin.addTab("Gestion des agents", jPanelGestionAgent);
 
-                jLabel3.setText("Afficher vente effectuer par un agent à un client");
+                jButtonOpenDialogInsertClient.setText("Création d'un client");
+                jButtonOpenDialogInsertClient.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonOpenDialogInsertClientActionPerformed(evt);
+                    }
+                });
+
+                jButtonOpenDialogUpdate.setText("Modifier le client sélectionner");
+                jButtonOpenDialogUpdate.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonOpenDialogUpdateActionPerformed(evt);
+                    }
+                });
+
+                jTableClient.setModel(new DefaultTableModel());
+                jScrollPane7.setViewportView(jTableClient);
+
+                jButtonDelClient.setText("Supprimer le client sélectionner");
+                jButtonDelClient.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonDelClientActionPerformed(evt);
+                    }
+                });
+
+                javax.swing.GroupLayout jPanelGestionDesClientsLayout = new javax.swing.GroupLayout(jPanelGestionDesClients);
+                jPanelGestionDesClients.setLayout(jPanelGestionDesClientsLayout);
+                jPanelGestionDesClientsLayout.setHorizontalGroup(
+                    jPanelGestionDesClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionDesClientsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelGestionDesClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDelClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOpenDialogUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOpenDialogInsertClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(341, 341, 341))
+                );
+                jPanelGestionDesClientsLayout.setVerticalGroup(
+                    jPanelGestionDesClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGestionDesClientsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonOpenDialogInsertClient, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonOpenDialogUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonDelClient, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                );
+
+                jTabbedPaneAdmin.addTab("Gestion des clients", jPanelGestionDesClients);
+
+                jTableListeVente.setModel(new DefaultTableModel());
+                jScrollPane6.setViewportView(jTableListeVente);
+
+                jButtonDelVente.setText("Annuler la vente (Suppression)");
+                jButtonDelVente.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonDelVenteActionPerformed(evt);
+                    }
+                });
+
+                jLabel3.setText("*Si une vente est considéré comme annulé. Il est possible en sélectionnant la vente dans le tableau(Ligne du tableau) de la supprimer en cliquant sur le  bouton \"Annuler la vente\" (Fonctionnalitée en version de test)");
+
+                jLabelStatistiques.setFont(new java.awt.Font("Eras Light ITC", 1, 18)); // NOI18N
+                jLabelStatistiques.setText("Statistiques des ventes : ");
+
+                jLabelStatVenteTotal.setText("Nombre de ventes total : ");
+
+                jLabelStatNbTotalVente.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
+                jLabelStatNbTotalVente.setText("0");
+
+                jLabel28.setText("Chiffre d'affaire total : ");
+
+                jLabelNbChiffreAffaireTotal.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
+                jLabelNbChiffreAffaireTotal.setText("0");
+
+                jLabelStatPrdPlusPopulaire.setText("Produit le plus populaires :");
+
+                jLabelPrdPlusPopulaire.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
+                jLabelPrdPlusPopulaire.setText("{{{{{loading}}}}}");
+
+                jLabelStatPlusGrosMontantVente.setText("Plus gros montant lors d'une vente :");
+
+                jLabelPlusGrosMontantUneVente.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
+                jLabelPlusGrosMontantUneVente.setText("0");
+
+                jLabel29.setText("* Vos factures sont stockés localement (C://PPE3-factures) et sur le serveur");
+
+                jLabel30.setFont(new java.awt.Font("Franklin Gothic Medium", 3, 14)); // NOI18N
+                jLabel30.setText("(Experimental)");
 
                 javax.swing.GroupLayout jPanelGestionVenteLayout = new javax.swing.GroupLayout(jPanelGestionVente);
                 jPanelGestionVente.setLayout(jPanelGestionVenteLayout);
                 jPanelGestionVenteLayout.setHorizontalGroup(
                     jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                        .addGap(383, 383, 383)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(409, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addComponent(jScrollPane6)
+                                .addContainerGap())
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                        .addComponent(jButtonDelVente, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel30))
+                                    .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                        .addGap(538, 538, 538)
+                                        .addComponent(jLabelStatistiques))
+                                    .addComponent(jLabel29))
+                                .addContainerGap(125, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionVenteLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addComponent(jLabelStatVenteTotal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelStatNbTotalVente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbChiffreAffaireTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addComponent(jLabelStatPlusGrosMontantVente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelPlusGrosMontantUneVente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
+                                .addComponent(jLabelStatPrdPlusPopulaire)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelPrdPlusPopulaire, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(503, 503, 503))
                 );
                 jPanelGestionVenteLayout.setVerticalGroup(
                     jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGestionVenteLayout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(436, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonDelVente)
+                            .addComponent(jLabel30))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel29)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabelStatistiques)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelStatVenteTotal)
+                            .addComponent(jLabelStatNbTotalVente))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabelNbChiffreAffaireTotal))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelStatPrdPlusPopulaire)
+                            .addComponent(jLabelPrdPlusPopulaire))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelGestionVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelStatPlusGrosMontantVente)
+                            .addComponent(jLabelPlusGrosMontantUneVente))
+                        .addContainerGap(56, Short.MAX_VALUE))
                 );
 
                 jTabbedPaneAdmin.addTab("Gestion des ventes", jPanelGestionVente);
-
-                jLabel4.setText("Produit nombre de fois vendus");
-
-                javax.swing.GroupLayout jPanelStatVenteLayout = new javax.swing.GroupLayout(jPanelStatVente);
-                jPanelStatVente.setLayout(jPanelStatVenteLayout);
-                jPanelStatVenteLayout.setHorizontalGroup(
-                    jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatVenteLayout.createSequentialGroup()
-                        .addContainerGap(410, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(385, 385, 385))
-                );
-                jPanelStatVenteLayout.setVerticalGroup(
-                    jPanelStatVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelStatVenteLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(434, Short.MAX_VALUE))
-                );
-
-                jTabbedPaneAdmin.addTab("Statistique vente", jPanelStatVente);
-
-                javax.swing.GroupLayout jPanelFactureLayout = new javax.swing.GroupLayout(jPanelFacture);
-                jPanelFacture.setLayout(jPanelFactureLayout);
-                jPanelFactureLayout.setHorizontalGroup(
-                    jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 1195, Short.MAX_VALUE)
-                );
-                jPanelFactureLayout.setVerticalGroup(
-                    jPanelFactureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 686, Short.MAX_VALUE)
-                );
-
-                jTabbedPaneAdmin.addTab("Generer Facture", jPanelFacture);
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPaneAdmin)
+                    .addComponent(jTabbedPaneAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 1343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 );
                 layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPaneAdmin)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPaneAdmin)
+                        .addContainerGap())
                 );
 
                 pack();
@@ -827,9 +1236,9 @@ public class JFrameAdmin extends javax.swing.JFrame {
         jTextFieldPrenomAgentModif.setText(prenomAgent);
         jTextFieldNumTelAgentModif.setText(numTelAgent);
         jTextFieldIdProfilAgentModif.setText(idProfilAgent);
-        
+
         jButtonUpdateAgentModifStep1.setVisible(true);
-        
+
         //######Formulaire modification des informations de l'agent +++++ du PROFIL Associé qui se rajoute lors du clique du bouton "Voir profil"######
         jLabelPseudoProfilAssocie.setVisible(false);
         jLabelPasswordProfilAssocie.setVisible(false);
@@ -901,8 +1310,203 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
     private void jButtonVoirProfilAssocieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoirProfilAssocieActionPerformed
         // TODO add your handling code here:
-         jButtonUpdateAgentModifStep1.setVisible(false);
+        jButtonUpdateAgentModifStep1.setVisible(false);
     }//GEN-LAST:event_jButtonVoirProfilAssocieActionPerformed
+
+    private void jButtonSupprimerUnAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerUnAgentActionPerformed
+        // TODO add your handling code here:
+        int recupLigne = jTableAfficherAgent.getSelectedRow();
+        DaoSIO.getInstance().requeteAction("DELETE FROM agent WHERE idAgent = " + jTableAfficherAgent.getModel().getValueAt(recupLigne, 0));
+        this.afficherAgent();
+    }//GEN-LAST:event_jButtonSupprimerUnAgentActionPerformed
+
+    private void jButtonDelVenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDelVenteActionPerformed
+        // TODO add your handling code here:
+        int recupLigneVente = jTableListeVente.getSelectedRow();
+        DaoSIO.getInstance().requeteAction("DELETE FROM vente WHERE idVente = " + jTableListeVente.getModel().getValueAt(recupLigneVente, 0));
+        this.afficherVente();
+    }//GEN-LAST:event_jButtonDelVenteActionPerformed
+
+    private void jButtonOpenDialogInsertClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenDialogInsertClientActionPerformed
+        // TODO add your handling code here:
+        jDialogAjouterClient.setVisible(true); //On définis la jDialog sur une visibilité de type "Vraie" c'est à dire que l'on rend visible la fenêtre jDialog
+        jDialogAjouterClient.setSize(500, 600); //On définis les dimensions de la jDialog
+        jDialogAjouterClient.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
+        jDialogAjouterClient.setLocationRelativeTo(this); //On centre la fenêtre lors de l'ouverture
+    }//GEN-LAST:event_jButtonOpenDialogInsertClientActionPerformed
+
+    private void jButtonOpenDialogUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenDialogUpdateActionPerformed
+        // TODO add your handling code here:
+        //**jDialog (lors du clique sur le bouton cela va afficher une fenêtre dans lequel la modification d'un client pourras être effectué
+        jDialogUpdateClient.setVisible(true); //On définis la jDialog sur une visibilité de type "Vraie" c'est à dire que l'on rend visible la fenêtre jDialog
+        jDialogUpdateClient.setSize(500, 600); //On définis les dimensions de la jDialog
+        jDialogUpdateClient.setResizable(false); //On interdit le redimensionnement de la fenêtre jDialog
+        jDialogUpdateClient.setLocationRelativeTo(this); //On centre la fenêtre lors de l'ouverture
+        int ligne = jTableClient.getSelectedRow(); //On récupère le numéro de ligne de la jTable
+        System.out.println(ligne + 1); //Affiche dans le terminal le numéro de ligne (Pas important pour l'état finale de l'application, seulement en cas de débug)
+
+        //Récupération des valeurs de la ligne sélectionner
+        String idClient = jTableClient.getModel().getValueAt(ligne, 0).toString(); //Variable "idClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String nomClient = jTableClient.getModel().getValueAt(ligne, 1).toString(); //Variable "nomClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String prenomClient = jTableClient.getModel().getValueAt(ligne, 2).toString(); //Variable "prenomClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String emailClient = jTableClient.getModel().getValueAt(ligne, 3).toString(); //Variable "emailClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+        String numTelClient = jTableClient.getModel().getValueAt(ligne, 4).toString(); //Variable "numTelClient" de type "Chaine" = Récupération du model de notre jTable dans lequel on va récupérer la valeur à (la ligne sélectionner, ainsi que la cellule en question) et conversion en String pour pouvoir auto remplir plus tard notre champs de saisie
+
+        jTextFieldID.disable(); //On interdit la modification de l'id du client à l'aide de Disable
+        jTextFieldID.setText(idClient); //On auto-rempli notre champs Id par l'id du client de la ligne sélectionner
+        jTextFieldUpdateNom.setText(nomClient); //On auto-rempli notre champs nom par le nom du client de la ligne sélectionner
+        jTextFieldUpdatePrenom.setText(prenomClient); //On auto-rempli notre champs prenom par le prenom du client de la ligne sélectionner
+        jTextFieldUpdateEmail.setText(emailClient); //On auto-rempli notre champs email par l'email du client de la ligne sélectionner
+        jTextFieldUpdateNumTel.setText(numTelClient); //On auto-rempli notre champs numTelClient par le numéro de telephone du client de la ligne sélectionner
+    }//GEN-LAST:event_jButtonOpenDialogUpdateActionPerformed
+
+    private void jButtonInsertionClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertionClientActionPerformed
+        // TODO add your handling code here
+        this.InsertionClient(); //On insére le nouveau client grâce à la méthode Insertion Client (1)
+        this.afficherClient(); //On actualise l'affichage de notre jTable (2)
+    }//GEN-LAST:event_jButtonInsertionClientActionPerformed
+
+    private void jTextFieldUpdateNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateNomActionPerformed
+
+    private void jTextFieldUpdatePrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdatePrenomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdatePrenomActionPerformed
+
+    private void jTextFieldUpdateEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateEmailActionPerformed
+
+    private void jTextFieldUpdateNumTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateNumTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUpdateNumTelActionPerformed
+
+    private void jButtonUpdateCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCActionPerformed
+        // TODO add your handling code here
+        DaoSIO.getInstance().requeteAction("UPDATE client SET nom = '" + jTextFieldUpdateNom.getText() + "', prenom = '" + jTextFieldUpdatePrenom.getText() + "', email = '" + jTextFieldUpdateEmail.getText() + "', num_telephone = '" + jTextFieldUpdateNumTel.getText() + "'WHERE idClient = " + jTextFieldID.getText() + "");
+        this.afficherClient();
+    }//GEN-LAST:event_jButtonUpdateCActionPerformed
+
+    private void jButtonDelClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDelClientActionPerformed
+        // TODO add your handling code here:
+        int recupLigneClient = jTableClient.getSelectedRow();
+        DaoSIO.getInstance().requeteAction("DELETE FROM client WHERE idClient = " + jTableClient.getModel().getValueAt(recupLigneClient, 0));
+        this.afficherClient();
+    }//GEN-LAST:event_jButtonDelClientActionPerformed
+
+    /**
+     * Cette méthode permet de calculer et d'afficher dans un jLabel (onglet gestion vente) le nombre de ventes effectués au total 
+     * @throws SQLException
+     */
+    public void nbTotalVente() throws SQLException{
+        
+        ResultSet nbVente = DaoSIO.getInstance().requeteSelection("SELECT COUNT(idVente) FROM vente");
+        
+        while(nbVente.next()){
+             String totalVente = nbVente.getString(1);
+             jLabelStatNbTotalVente.setText(totalVente);
+        }
+        
+    }
+    
+    /**
+     * Cette méthode calcul le montant cumulé de toutes les ventes effectués 
+     * @throws SQLException 
+     */
+    public void chiffreAffaireTotal() throws SQLException{
+        
+        ResultSet sommeTotal = DaoSIO.getInstance().requeteSelection("SELECT SUM(montant_facture) FROM facture");
+        
+        while(sommeTotal.next()){
+            String totalChiffreAffaire = sommeTotal.getString(1);
+            jLabelNbChiffreAffaireTotal.setText(totalChiffreAffaire + " €");
+        }
+        
+    }
+            
+    /**
+     * Cette méthode permet d'afficher le nom du produit le plus populaire / vendu
+     * @throws SQLException 
+     */
+    public void produitPlusPopulaire() throws SQLException{
+        
+        ResultSet prdPlusPopulaire = DaoSIO.getInstance().requeteSelection("SELECT nom_produit FROM produit WHERE(SELECT MAX(popularite) FROM produit) = produit.popularite");
+        
+        while(prdPlusPopulaire.next()){
+            String nomPrdPlusPopulaire = prdPlusPopulaire.getString(1);
+            jLabelPrdPlusPopulaire.setText(nomPrdPlusPopulaire);
+        }
+    }
+    
+    /**
+     * Cette méthode permet d'afficher la vente la plus élevé
+     * @throws SQLException 
+     */
+    public void venteLaPlusEleve() throws SQLException{
+        
+        ResultSet montantPlusEleve = DaoSIO.getInstance().requeteSelection("SELECT MAX(montant_facture) FROM facture");
+        
+        while(montantPlusEleve.next()){
+            String facturePlusEleve = montantPlusEleve.getString(1);
+            jLabelPlusGrosMontantUneVente.setText(facturePlusEleve + " €");
+        }      
+    }
+    
+    
+    /**
+     * Cette méthode nous permet de créer des clients Techniquement parlant nous
+     * allons insérer nos clients dans notre table client via un INSERT INTO
+     * client VALUES (XXXXXXXXXXXXXXX)
+     */
+    public void InsertionClient() {
+        DaoSIO.getInstance().requeteAction("INSERT INTO client (nom, prenom, Email, num_telephone) VALUES ('" + jTextFieldNomClient.getText() + "', '" + jTextFieldPrenomClient.getText() + "','" + jTextFieldEmailClient.getText() + "'," + jTextFieldTelClient.getText() + ")");
+    }
+
+    /**
+     * Méthode qui va nous permettre d'afficher la liste de tous les clients
+     * appartenant à notre table client de notre base de donnée
+     *
+     * Cette méthode est recommandé pour être appelé dans un bouton ou autre
+     * événement cliquable
+     */
+    public void afficherClient() {
+        JTable tableClient;
+
+        //Création de l'objet de type DefaultTableModel qui sera lié à notre jTable des clients
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        tableClient = new JTable(defaultTableModel);
+        tableClient.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        tableClient.setFillsViewportHeight(true);
+
+        //////////////////////////////////////////////////
+        //*******AJOUT DES COLONNES A NOTRE JTABLE******//
+        //////////////////////////////////////////////////
+        defaultTableModel.addColumn("idClient");
+        defaultTableModel.addColumn("nomClient");
+        defaultTableModel.addColumn("prenomClient");
+        defaultTableModel.addColumn("Email");
+        defaultTableModel.addColumn("num_telephone");
+
+        try {
+
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM client"); //Selection, Récupération de tous nos clients issus de notre base de données SQL de la table client 
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                String id = resultSet.getString(1); //on récupère nos tuples du champs id
+                String nom = resultSet.getString(2); //on récupère nos tuples du champs nom
+                String prenom = resultSet.getString(3); //on récupère nos tuples du champs prenom
+                String email = resultSet.getString(4); //on récupère nos tuples du champs Email
+                String numTel = resultSet.getString(5); //on récupère nos tuples du champs num_telephone
+
+                defaultTableModel.addRow(new Object[]{id, nom, prenom, email, numTel});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+            }
+            jTableClient.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
 
     /**
      * Méthode qui permete d'afficher tous les produits
@@ -930,11 +1534,11 @@ public class JFrameAdmin extends javax.swing.JFrame {
         defaultTableModel.addColumn("Popularite / Evaluation");
         try {
 
-            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM produit"); //Selection, Récupération de tous nos clients issus de notre base de données SQL de la table client 
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT * FROM produit"); //Selection, Récupération de tous nos produits issus de notre base de données SQL de la table produit 
 
             while (resultSet.next()) {
 
-                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                //Récupération de nos tuples dans notre table produit de notre base de donnée MySQL
                 String idPrd = resultSet.getString(1); //on récupère nos tuples du champs idProduit
                 String nomPrd = resultSet.getString(2); //on récupère nos tuples du champs nomProduit
                 String tarifPrd = resultSet.getString(3); //on récupère nos tuples du champs tarifProduit
@@ -974,7 +1578,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
             while (resultSet.next()) {
 
-                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                //Récupération de nos tuples dans notre table agent de notre base de donnée MySQL
                 String idAgent = resultSet.getString(1);
                 String nomAgent = resultSet.getString(2);
                 String prenomAgent = resultSet.getString(3);
@@ -988,8 +1592,6 @@ public class JFrameAdmin extends javax.swing.JFrame {
         }
     }
 
-
-
     public void afficherProfil() {
         JTable tableProfil;
 
@@ -1000,7 +1602,6 @@ public class JFrameAdmin extends javax.swing.JFrame {
         tableProfil = new JTable(defaultTableModel);
         tableProfil.setPreferredScrollableViewportSize(new Dimension(600, 600));
         tableProfil.setFillsViewportHeight(true);
-        
 
         //Ajout des colonnes à notre jTable
         defaultTableModel.addColumn("idProfil");
@@ -1016,7 +1617,7 @@ public class JFrameAdmin extends javax.swing.JFrame {
 
             while (resultSet.next()) {
 
-                //Récupération de nos tuples dans notre table client de notre base de donnée MySQL
+                //Récupération de nos tuples dans notre table profil de notre base de donnée MySQL
                 String idProfil = resultSet.getString(1);
                 String usernameProfil = resultSet.getString(2);
                 String passwordProfil = resultSet.getString(3);
@@ -1031,6 +1632,44 @@ public class JFrameAdmin extends javax.swing.JFrame {
         }
     }
 
+    public void afficherVente() {
+        JTable tableVente;
+
+        DaoSIO.getInstance();
+
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+
+        tableVente = new JTable(defaultTableModel);
+        tableVente.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        tableVente.setFillsViewportHeight(true);
+
+        //Ajout des colonnes à notre jTable
+        defaultTableModel.addColumn("idVente");
+        defaultTableModel.addColumn("nom");
+        defaultTableModel.addColumn("prenom");
+        defaultTableModel.addColumn("numero_commande");
+        defaultTableModel.addColumn("date_vente");
+
+        try {
+
+            ResultSet resultSet = DaoSIO.getInstance().requeteSelection("SELECT effectuer.idVente, client.nom, client.prenom, vente.numero_commande, vente.date_vente FROM effectuer, client, vente WHERE effectuer.idClient = client.idClient AND vente.idVente = effectuer.idVente;");
+
+            while (resultSet.next()) {
+
+                //Récupération de nos tuples dans notre table vente de notre base de donnée MySQL
+                String idVente = resultSet.getString(1);
+                String nomClient = resultSet.getString(2);
+                String prenomClient = resultSet.getString(3);
+                String numCommande = resultSet.getString(4);
+                String date_vente = resultSet.getString(5);
+
+                defaultTableModel.addRow(new Object[]{idVente, nomClient, prenomClient, numCommande, date_vente});//On ajoute nos tuples dans les lignes du tableau de notre Table Java
+            }
+            jTableListeVente.setModel(defaultTableModel);
+        } catch (SQLException throwables) {
+        }
+    }
+
     public void recupProfil() {
 
         try {
@@ -1039,9 +1678,9 @@ public class JFrameAdmin extends javax.swing.JFrame {
             while (rs.next()) {
 
                 //String idProfil = rs.getString(1);
-                String numTelephone = rs.getString(2);
-                String username = rs.getString(3);
-                String password = rs.getString(4);
+                String numTelephone = rs.getString(4);
+                String username = rs.getString(2);
+                String password = rs.getString(3);
                 String email = rs.getString(5);
                 String statut = rs.getString(6);
 
@@ -1087,7 +1726,11 @@ public class JFrameAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameAdmin().setVisible(true);
+                try {
+                    new JFrameAdmin().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFrameAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1096,19 +1739,28 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAddProduit;
     private javax.swing.JButton jButtonAjoutProduit;
     private javax.swing.JButton jButtonAnnulerSuppression;
+    private javax.swing.JButton jButtonDelClient;
     private javax.swing.JButton jButtonDelProduit;
+    private javax.swing.JButton jButtonDelVente;
+    private javax.swing.JButton jButtonInsertionClient;
     private javax.swing.JButton jButtonModifierAgent1;
+    private javax.swing.JButton jButtonOpenDialogInsertClient;
+    private javax.swing.JButton jButtonOpenDialogUpdate;
     private javax.swing.JButton jButtonSupprimerUnAgent;
     private javax.swing.JButton jButtonUpdateAgentModifStep1;
     private javax.swing.JButton jButtonUpdateAgentModifStep2;
+    private javax.swing.JButton jButtonUpdateC;
     private javax.swing.JButton jButtonUpdatePRD;
     private javax.swing.JButton jButtonUpdateProduit;
     private javax.swing.JButton jButtonValiderSuppresion;
     private javax.swing.JButton jButtonVoirProfilAssocie;
+    private javax.swing.JDialog jDialogAjouterClient;
     private javax.swing.JDialog jDialogAjouterProduit;
     private javax.swing.JDialog jDialogModifAgent;
     private javax.swing.JDialog jDialogSupprimerProduit;
+    private javax.swing.JDialog jDialogUpdateClient;
     private javax.swing.JDialog jDialogUpdateProduit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1116,8 +1768,22 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1127,44 +1793,67 @@ public class JFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmailProfilAssocie;
     private javax.swing.JLabel jLabelIdAgentModif;
     private javax.swing.JLabel jLabelIdProfilAgentModif;
+    private javax.swing.JLabel jLabelMsgPop1;
+    private javax.swing.JLabel jLabelMsgPop2;
+    private javax.swing.JLabel jLabelMsgPop3;
+    private javax.swing.JLabel jLabelNbChiffreAffaireTotal;
     private javax.swing.JLabel jLabelNomAgentModif;
     private javax.swing.JLabel jLabelNumTelAgentModif;
     private javax.swing.JLabel jLabelNumTelProfilAssocie;
     private javax.swing.JLabel jLabelPasswordProfilAssocie;
+    private javax.swing.JLabel jLabelPlusGrosMontantUneVente;
+    private javax.swing.JLabel jLabelPrdPlusPopulaire;
     private javax.swing.JLabel jLabelPrenomAgentModif;
     private javax.swing.JLabel jLabelPseudoProfilAssocie;
+    private javax.swing.JLabel jLabelStatNbTotalVente;
+    private javax.swing.JLabel jLabelStatPlusGrosMontantVente;
+    private javax.swing.JLabel jLabelStatPrdPlusPopulaire;
+    private javax.swing.JLabel jLabelStatVenteTotal;
+    private javax.swing.JLabel jLabelStatistiques;
     private javax.swing.JLabel jLabelStatutProfilAssocie;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelFacture;
     private javax.swing.JPanel jPanelGestioCatProduit;
-    private javax.swing.JPanel jPanelGestionClient;
+    private javax.swing.JPanel jPanelGestionAgent;
+    private javax.swing.JPanel jPanelGestionDesClients;
     private javax.swing.JPanel jPanelGestionVente;
-    private javax.swing.JPanel jPanelStatVente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPaneAdmin;
     private javax.swing.JTable jTableAfficherAgent;
+    private javax.swing.JTable jTableClient;
     private javax.swing.JTable jTableListeProduit;
+    private javax.swing.JTable jTableListeVente;
     private javax.swing.JTable jTableProfil;
     private javax.swing.JTextArea jTextAreaDescriptionPRD;
     private javax.swing.JTextArea jTextAreaDescriptionProduit;
+    private javax.swing.JTextField jTextFieldEmailClient;
     private javax.swing.JTextField jTextFieldEmailProfilAssocie;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldIDPRD;
     private javax.swing.JTextField jTextFieldIdAgentModif;
     private javax.swing.JTextField jTextFieldIdProfilAgentModif;
     private javax.swing.JTextField jTextFieldNomAgentModif;
+    private javax.swing.JTextField jTextFieldNomClient;
     private javax.swing.JTextField jTextFieldNomProduit;
     private javax.swing.JTextField jTextFieldNumTelAgentModif;
     private javax.swing.JTextField jTextFieldNumTelProfilAssocie;
     private javax.swing.JTextField jTextFieldPasswordProfilAssocie;
     private javax.swing.JTextField jTextFieldPrenomAgentModif;
+    private javax.swing.JTextField jTextFieldPrenomClient;
     private javax.swing.JTextField jTextFieldStatutProfilAssocie;
     private javax.swing.JTextField jTextFieldStockProduit;
     private javax.swing.JTextField jTextFieldTarifProduit;
+    private javax.swing.JTextField jTextFieldTelClient;
+    private javax.swing.JTextField jTextFieldUpdateEmail;
+    private javax.swing.JTextField jTextFieldUpdateNom;
     private javax.swing.JTextField jTextFieldUpdateNomPRD;
+    private javax.swing.JTextField jTextFieldUpdateNumTel;
+    private javax.swing.JTextField jTextFieldUpdatePrenom;
     private javax.swing.JTextField jTextFieldUpdateStockPRD;
     private javax.swing.JTextField jTextFieldUpdateTarifPRD;
     private javax.swing.JTextField jTextFieldUsernameProfilAssocie;

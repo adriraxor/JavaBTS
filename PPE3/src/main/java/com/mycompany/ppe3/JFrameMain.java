@@ -6,17 +6,20 @@
 package com.mycompany.ppe3;
 
 /**
- *
+ * Cette classe représente et concerne la fenêtre principale qui est executé en premier
+ * Elle représente la fenêtre d'authentification
  * @author FIGUERES Adrien
  */
 public class JFrameMain extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameMain
+     * Fenêtre principale
      */
     public JFrameMain() {
         initComponents();
         this.setLocationRelativeTo(this);
+     
     }
 
     /**
@@ -29,23 +32,25 @@ public class JFrameMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jColorChooser1 = new javax.swing.JColorChooser();
-        formulaire2 = new com.mycompany.ppe3.Formulaire();
+        formulaire1 = new com.mycompany.ppe3.Formulaire();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fenêtre de connexion");
-
-        formulaire2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray));
-        formulaire2.setForeground(java.awt.SystemColor.controlLtHighlight);
+        setBounds(new java.awt.Rectangle(0, 0, 100, 100));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formulaire2, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+            .addComponent(formulaire1, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formulaire2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(formulaire1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -93,7 +98,7 @@ public class JFrameMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.ppe3.Formulaire formulaire2;
+    private com.mycompany.ppe3.Formulaire formulaire1;
     private javax.swing.JColorChooser jColorChooser1;
     // End of variables declaration//GEN-END:variables
 }

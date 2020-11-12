@@ -7,7 +7,6 @@ package com.mycompany.ppe3;
 
 /**
  *
- * @author c.nadal
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,13 +20,12 @@ import java.util.logging.Logger;
  * Classe d'accès aux données contenant des membres statiques afin de manipuler
  * la BDD ON implémente ici le Design Pattern Singleton
  *
- * @author nc
  */
 public class DaoSIO {
 
     /**
      * Membres static (de classe)
-     *
+     * Informations concernant la connexion "Nom serveur" "port" "nomBDD" "usernamePHPmyAdmin" "passwordPHPmyAdmin" 
      */
     private static String nomServeur = "localhost";
     private static String port = "3306";
